@@ -29,17 +29,50 @@ This project is ideal for demonstrating **frontend development skills** and crea
 ---
 
 ## 📂 File Structure
-js-chain-lending/
-├── index.html # Main landing page
-├── style.css # CSS styling
-├── script.js # JavaScript functionality
-├── assets/ # Images, icons, fonts, or other resources
-├── README.md # Project documentation
-
-yaml
-Copy code
-
----
+JS Chain Lending/
+├── .vscode/
+│ └── extensions.json
+├── assets/
+│ ├── images/
+│ └── videos/
+│ └── afterlogin.mp4
+├── chain/
+├── afterlogin.html
+├── afterlogin.css
+├── afterlogin.js
+├── agoric.html
+├── agoric.css
+├── chart.js
+├── image.html
+├── index.html
+├── kyc.html
+├── kyc.css
+├── kyc.js
+├── loan-calculator.html
+├── loancalculator.css
+├── login.html
+├── login.css
+├── login.js
+├── market.html
+├── market-details.html
+├── market-details.css
+├── market-graph.html
+├── market-graph.css
+├── new-index.html
+├── new-index.css
+├── new-index.js
+├── post1.html
+├── post2.html
+├── post3.html
+├── post.css
+├── profile.html
+├── profile.css
+├── profile.js
+├── script.js
+├── signup.html
+├── signup.css
+├── styles.css
+├── try.html
 
 ## ⚙️ Technologies Used
 - **HTML5** – Semantic structure and layout  
@@ -61,17 +94,6 @@ Copy code
 - Connect to **backend or blockchain APIs** for functional lending  
 - Add **animations and transitions** for better UX  
 - Implement **form validation and notifications**  
-- Mobile-first improvements for better **responsiveness**  
-
----
-
-## 📢 Author / Contact
-- **Name:** Jatin Soni  
-- **University:** Lovely Professional University  
-- **Project:** Web Development Project (Frontend)  
-- **GitHub:** [https://github.com/YOUR-USERNAME](https://github.com/YOUR-USERNAME)  
-- **Live Website:** [JS Chain Lending Live](https://YOUR-USERNAME.github.io/js-chain-lending/)  
-
----
-
+- Mobile-first improvements for better **responsiveness**
+  
 > Built with ❤️ using HTML, CSS, and JavaScript
