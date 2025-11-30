@@ -1,7 +1,5 @@
 # JS Chain Lending
 
-[🌐 Live Website]([https://YOUR-USERNAME.github.io/js-chain-lending/](http://127.0.0.1:5500/afterlogin.html))
-
 **JS Chain Lending** is a modern web-based project that demonstrates a **lending platform concept** with interactive features, responsive design, and a clean user interface.  
 This project is built using **HTML, CSS, and JavaScript**, and is fully hosted on **GitHub Pages**.  
 
@@ -79,15 +77,6 @@ JS Chain Lending/
 - **CSS3** – Styling, animations, and responsive design  
 - **JavaScript** – Interactive features and UI logic  
 - **Git & GitHub** – Version control and hosting  
-
----
-
-## 🛠 How to Use
-1. Open the [live website](https://YOUR-USERNAME.github.io/js-chain-lending/) or open `index.html` locally.  
-2. Navigate through the landing page and explore interactive features.  
-3. Edit or extend features by modifying **HTML, CSS, and JS files**.  
-
----
 
 ## 🔧 Future Enhancements
 - Integrate **user authentication** (login/signup)  
