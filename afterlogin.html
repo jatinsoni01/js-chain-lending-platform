@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Chain Lending Platform</title>
+    <link rel="stylesheet" href="afterlogin.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header" id="main-header">
+        <div class="liquid-cursor"></div>
+        <div class="header-animation">
+            <div class="chain-line"></div>
+            <div class="data-stream"></div>
+            <div class="data-stream"></div>
+            <div class="data-stream"></div>
+            <div class="data-stream"></div>
+        </div>
+        <div class="logo">
+            <img src="assets/images/logo.png" alt="Blockchain Logo" class="logo-img">
+            <span class="logo-text">Blockchain Lending</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="loan-calculator.html">Loan Calculator</a></li>
+                <!-- Profile Avatar -->
+                <li class="profile">
+                    <a href="new-index.html" class="profile-avatar" id="profile-avatar">JS</a>
+                    <div class="profile-dropdown" id="profile-dropdown">
+                        <div class="profile-header">
+                            <div class="profile-image-avatar">
+                                <span>JS</span>
+                            </div>
+                            <div class="profile-info">
+                                <p class="profile-name">JATIN SONI</p>
+                                <p class="email-text">jatin@gmail.com</p>
+                            </div>
+                        </div>
+                        <button class="add-account">Add Account</button>
+                        <button class="logout">Sign Out</button>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <script>
+        // Add scrolling effect to header
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
+
+   <!-- About Section -->
+<section id="about" class="about">
+    <!-- Fullscreen Video -->
+    <video autoplay muted loop playsinline class="background-video">
+        <source src="assets/afterlogin.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="content">
+     
+    <!-- Content Section Below the Video -->
+<div class="about-content">
+    <div class="text-section">
+        <h2>About JS Chain Lending Platform</h2>
+        <p>Welcome to the <strong>JS Chain Lending Platform</strong>, an innovative solution designed to transform how decentralized finance works. Our platform allows users to easily <strong>collateralize tokens</strong> from various blockchains to borrow <strong>stable assets</strong> in a secure and efficient manner.</p>
+        <p>Powered by <strong>Agoric</strong>, our platform ensures that you can unlock the true potential of your tokens, bridging the gap between different blockchain ecosystems. Whether you're a borrower looking for stable loans or an investor aiming for high returns, our platform offers a <strong>seamless, decentralized experience</strong>.</p>
+        <div class="feature-boxes">
+            <div class="feature-box">
+                <i class="fa fa-lock"></i>
+                <h3>JS Chain Lending Collateralization</h3>
+                <p>Unlock liquidity by using tokens from multiple blockchains as collateral.</p>
+            </div>
+            <div class="feature-box">
+                <i class="fa fa-shield-alt"></i>
+                <h3>Decentralized & Secure</h3>
+                <p>Built on the secure and decentralized Agoric platform for trustless transactions.</p>
+            </div>
+            <div class="feature-box">
+                <i class="fa fa-piggy-bank"></i>
+                <h3>Access Stable Assets</h3>
+                <p>Borrow stable assets while leveraging your digital assets across blockchain networks.</p>
+            </div>
+        </div>
+        <a href="new-index.html">
+            <button class="cta">Get Started</button>
+        </a>
+    </div>
+</div>
+
+    <!-- Features Section -->
+<section id="features" class="features">
+    <h2>Platform Features</h2>
+    <div class="feature-cards">
+        <div class="feature-card">
+            <img src="assets/images/cross-chain-icon.webp" alt="JS Chain Lending" class="feature-image">
+            <h3>JS Chain Lending Collateralization</h3>
+            <p>Use assets from different blockchains as collateral.</p>
+        </div>
+        <div class="feature-card">
+            <img src="assets/images/Stable Asset Borrowing icon.png" alt="Stable Assets" class="feature-image">
+            <h3>Stable Asset Borrowing</h3>
+            <p>Borrow stablecoins to minimize market volatility.</p>
+        </div>
+        <div class="feature-card">
+            <img src="assets/images/secure icon.png" alt="Security" class="feature-image">
+            <h3>Security</h3>
+            <p>Decentralized, safe lending through verified smart contracts.</p>
+        </div>
+        <div class="feature-card">
+            <img src="assets/images/easy-to-use-icon.png" alt="User Interface" class="feature-image">
+            <h3>Easy-to-Use Interface</h3>
+            <p>Simple, intuitive interface for JS Chain Lending transactions.</p>
+        </div>
+    </div>
+</section>
+
+    <!-- How It Works Section -->
+<section id="how-it-works" class="how-it-works">
+    <h2>How It Works</h2>
+    <div class="steps">
+        <div class="step">
+            <img src="assets/images/collateral-icon.png" alt="Collateral" class="step-image">
+            <h3>Step 1: Select Collateral</h3>
+            <p>Choose your token and blockchain for collateral.</p>
+        </div>
+        <div class="step">
+            <img src="assets/images/borrow-icon.png" alt="Borrow" class="step-image">
+            <h3>Step 2: Borrow Assets</h3>
+            <p>Choose stable assets to borrow based on collateral.</p>
+        </div>
+        <div class="step">
+            <img src="assets/images/repay-icon.png" alt="Repay" class="step-image">
+            <h3>Step 3: Repay Loan</h3>
+            <p>Repay the loan with flexible terms.</p>
+        </div>
+    </div>
+</section>
+
+    <!-- Testimonials Section -->
+<section id="testimonials" class="testimonials">
+    <h2>What Our Clients Say</h2>
+    <div class="testimonial-cards">
+        <div class="testimonial-card">
+            <img src="assets/images/avtar 1.jpg" alt="Client 1" class="testimonial-image">
+            <p class="testimonial-text">"This platform is a game changer. The JS Chain Lending feature is incredibly innovative and easy to use!"</p>
+            <p class="client-name">John Doe</p>
+            <p class="client-role">Investor</p>
+        </div>
+        <div class="testimonial-card">
+            <img src="assets/images/avtar 2.jpeg" alt="Client 2" class="testimonial-image">
+            <p class="testimonial-text">"I've been able to access capital faster than ever, and the security is top-notch."</p>
+            <p class="client-name">Jane Smith</p>
+            <p class="client-role">Borrower</p>
+        </div>
+        <div class="testimonial-card">
+            <img src="assets/images/avtar 3.jpg" alt="Client 3" class="testimonial-image">
+            <p class="testimonial-text">"JS Chain Lending has allowed me to diversify my assets and take advantage of new opportunities!"</p>
+            <p class="client-name">Michael Lee</p>
+            <p class="client-role">Lender</p>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<div class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-container">
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>What is JS Chain Lending collateralization?</span>
+                <button class="toggle-answer">Show Answer</button>
+            </div>
+            <div class="faq-answer">
+                JS Chain Lending collateralization enables users to use assets from different blockchains as collateral for loans.
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Is the platform secure?</span>
+                <button class="toggle-answer">Show Answer</button>
+            </div>
+            <div class="faq-answer">
+                Yes, our platform uses decentralized and verified smart contracts for maximum security.
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>What stable assets can I borrow?</span>
+                <button class="toggle-answer">Show Answer</button>
+            </div>
+            <div class="faq-answer">
+                You can borrow a variety of stablecoins, including USDT, USDC, and more.
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>How can I add collateral to the platform?</span>
+                <button class="toggle-answer">Show Answer</button>
+            </div>
+            <div class="faq-answer">
+                You can add collateral by connecting your wallet and selecting the assets you want to use as collateral from supported blockchains.
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>How are the interest rates calculated?</span>
+                <button class="toggle-answer">Show Answer</button>
+            </div>
+            <div class="faq-answer">
+                Interest rates are calculated based on the type of collateral and market conditions. We strive to offer competitive and fair rates.
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Can I withdraw my collateral at any time?</span>
+                <button class="toggle-answer">Show Answer</button>
+            </div>
+            <div class="faq-answer">
+                Yes, you can withdraw your collateral at any time, provided you have repaid the loan in full.
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.querySelectorAll('.toggle-answer').forEach(button => {
+    button.addEventListener('click', () => {
+        const answer = button.closest('.faq-item').querySelector('.faq-answer');
+        const isVisible = answer.style.display === 'block';
+        
+        // Toggle visibility
+        answer.style.display = isVisible ? 'none' : 'block';
+        button.textContent = isVisible ? 'Show Answer' : 'Hide Answer';
+    });
+});
+</script>
+
+
+
+
+
+    <!-- Team Section -->
+<div class="team-section">
+    <h2>Meet Our Team</h2>
+    <div class="team-container">
+        <div class="team-member">
+            <img src="assets/images/tm-1.png" alt="Team Member 1">
+            <h3>John Doe</h3>
+            <p>CEO</p>
+            <p class="description">John is the visionary leader who drives the company's strategy and innovation.</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/images/tm-2.png" alt="Team Member 2">
+            <h3>Jane Smith</h3>
+            <p>CTO</p>
+            <p class="description">Jane oversees the technical side of the business and ensures smooth operations.</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/images/tm-3.png" alt="Team Member 3">
+            <h3>David Lee</h3>
+            <p>Marketing Head</p>
+            <p class="description">David is responsible for creating and executing marketing strategies to grow the
+                brand.</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/images/tm-4.png" alt="Team Member 4">
+            <h3>Emily Johnson</h3>
+            <p>Designer</p>
+            <p class="description">Emily is the creative mind behind our product designs and user experience.</p>
+        </div>
+    </div>
+</div>
+
+    <!-- Security Features Section -->
+    <div class="security-section">
+        <h2>Our Security Features</h2>
+        <div class="security-container">
+            <div class="security-feature">
+                <img src="assets/images/security-icon1.png" alt="Encryption">
+                <h3>End-to-End Encryption</h3>
+                <p>We ensure all data is encrypted from the moment it's sent to the moment it's received, providing the highest level of security.</p>
+            </div>
+            <div class="security-feature">
+                <img src="assets/images/security-icon2.png" alt="Two-Factor Authentication">
+                <h3>Two-Factor Authentication</h3>
+                <p>To enhance your account security, we require two-factor authentication for all sensitive actions.</p>
+            </div>
+            <div class="security-feature">
+                <img src="assets/images/security-icon3.png" alt="Data Backup">
+                <h3>Regular Data Backups</h3>
+                <p>We perform regular backups to ensure your data is always safe, even in the event of unexpected issues.</p>
+            </div>
+            <div class="security-feature">
+                <img src="assets/images/security-icon4.png" alt="Firewall Protection">
+                <h3>Firewall Protection</h3>
+                <p>Our advanced firewall protects your data from unauthorized access and potential cyber threats.</p>
+            </div>
+        </div>
+    </div>
+    
+<!-- Blog Section -->
+<div class="blog-section">
+    <h2>Our Latest Blog Posts</h2>
+    <div class="blog-container">
+        <div class="blog-post">
+            <img src="assets/images/bg 1.png" alt="Blog 1" class="blog-image">
+            <div class="blog-content">
+                <h3>How to Secure Your Online Data</h3>
+                <p class="blog-snippet">Learn effective strategies for protecting your data online and ensuring your privacy in a digital world...</p>
+                <div class="extra-content" style="display: none;">
+                    <p>This blog post dives deep into the latest techniques and tools available for securing your online presence. From encryption methods to choosing secure passwords and avoiding phishing attempts, we've got you covered with everything you need to know.</p>
+                </div>
+                <a href="post1.html" class="read-more">Read More</a>
+            </div>
+        </div>
+        <div class="blog-post">
+            <img src="assets/images/bg 2.png" alt="Blog 2" class="blog-image">
+            <div class="blog-content">
+                <h3>The Importance of Regular Backups</h3>
+                <p class="blog-snippet">Discover why backing up your data regularly is crucial for safeguarding against unexpected data loss...</p>
+                <div class="extra-content" style="display: none;">
+                    <p>In this post, we explore the importance of maintaining regular backups of your critical data. We cover different methods of backing up your files, from cloud solutions to local drives, and how often you should back up to ensure maximum protection.</p>
+                </div>
+                <a href="post2.html" class="read-more">Read More</a>
+            </div>
+        </div>
+        <div class="blog-post">
+            <img src="assets/images/bg 3.png" alt="Blog 3" class="blog-image">
+            <div class="blog-content">
+                <h3>Mastering Two-Factor Authentication</h3>
+                <p class="blog-snippet">An easy guide to understanding and setting up two-factor authentication to add an extra layer of security...</p>
+                <div class="extra-content" style="display: none;">
+                    <p>Two-factor authentication is one of the best ways to protect your online accounts. This guide covers everything from what two-factor authentication is, to setting it up on your accounts and understanding the different authentication methods available.</p>
+                </div>
+                <a href="post3.html" class="read-more">Read More</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    <!-- Footer Section -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <!-- Logo and Description -->
+            <div class="col">
+                <div class="footer-logo">
+                    <a href="#" class="logo">JS Chain Lending</a>
+                    <p>
+                        JS Chain Lending is a revolutionary blockchain-based platform that enables secure and transparent cross-chain lending. Our platform allows users to collateralize tokens from other chains and borrow stable assets seamlessly on Agoric. We aim to provide innovative financial solutions that empower users in the decentralized finance (DeFi) space.
+                    </p>
+                    </p>
+                    <ul class="social-links">
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col">
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <!-- <li><a href="#">About Us</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Contact</a></li> -->
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Contact -->
+            <div class="col">
+                <div class="footer-links">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><a href="mailto:sonijatin1231@gmail.com">Email: sonijatin1231@gmail.com</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="copyright">
+        <p>&copy; 2024 JS Chain Lending. All rights reserved.</p>
+    </div>
+</footer>
+
+
+    
+
+    <script src="afterlogin.js"></script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.header {
+    background-color: #0056b3;
+    color: white;
+    padding: 1.5em 2em;
+    text-align: center;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+.header .nav-link {
+    color: #ffd700;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+.container {
+    padding: 2em;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.coin-header {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    margin-bottom: 2em;
+}
+
+.coin-image {
+    width: 80px;
+    height: 80px;
+}
+
+.coin-info h2 {
+    margin: 0 0 0.5em;
+    font-size: 1.8em;
+    color: #0056b3;
+}
+
+.coin-info p {
+    margin: 0.3em 0;
+}
+
+.positive {
+    color: #28a745;
+}
+
+.negative {
+    color: #dc3545;
+}
+
+.chart-section {
+    margin-top: 3em;
+    padding: 2em;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.about-section {
+    margin-top: 3em;
+    background: white;
+    padding: 2em;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.about-section h3 {
+    color: #0056b3;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+ul li {
+    margin-bottom: 1em;
+    font-size: 1.1em;
+}
+
+.footer {
+    text-align: center;
+    padding: 1em;
+    background-color: #f1f1f1;
+    margin-top: 3em;
+    font-size: 0.9em;
+}
+
+.footer a {
+    text-decoration: none;
+    color: #0056b3;
+}

@@ -1,0 +1,321 @@
+/* General Page Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark Mode */
+body.dark-mode {
+    background-color: #121212;
+    color: #fff;
+}
+
+/* Header Styles */
+header {
+    background: linear-gradient(135deg, #2f3b50, #1e2a38);
+    color: #fff;
+    padding: 20px 30px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+header h1:hover {
+    color: #f39c12;
+}
+
+button {
+    background-color: #ffffff;
+    color: #1e2a38;
+    border: 2px solid #0077b6;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #0077b6;
+    color: white;
+    transform: scale(1.05);
+}
+
+#theme-toggle {
+    font-size: 20px;
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+#theme-toggle:hover {
+    color: #ffcc00;
+}
+
+/* Live Market Styles */
+.live-market {
+    padding: 30px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease;
+}
+
+.live-market:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.live-market h3 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.market-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.market-item {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.market-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.market-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.market-image.loaded {
+    transform: scale(1.1);
+}
+
+.symbol {
+    font-size: 20px;
+    font-weight: 700;
+    color: #0077b6;
+}
+
+.price {
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+    margin-top: 10px;
+}
+
+.change {
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 5px;
+}
+
+.change.negative {
+    color: #e74c3c;
+}
+
+.volume,
+.market-cap,
+.liquidity,
+.apy {
+    font-size: 16px;
+    margin-top: 8px;
+    color: #777;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.details-button,
+.graph-button {
+    background-color: #0077b6;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.details-button:hover,
+.graph-button:hover {
+    background-color: #005f87;
+    transform: translateY(-3px);
+}
+
+.loading-spinner {
+    display: none;
+    margin: 0 auto;
+    width: 50px;
+    height: 50px;
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #0077b6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Dark Mode Styles */
+body.dark-mode header {
+    background: #121212;
+}
+
+body.dark-mode .live-market {
+    background-color: #1e1e1e;
+    color: #fff;
+}
+
+body.dark-mode .market-item {
+    background-color: #2c2c2c;
+    color: #fff;
+}
+
+body.dark-mode .market-item:hover {
+    background-color: #cfcfcf;
+}
+
+body.dark-mode .symbol {
+    color: #66ccff;
+}
+
+body.dark-mode .price {
+    color: #f1f1f1;
+}
+
+body.dark-mode .change {
+    color: #fff;
+}
+
+body.dark-mode .change.negative {
+    color: #e74c3c;
+}
+
+body.dark-mode .volume,
+body.dark-mode .market-cap,
+body.dark-mode .liquidity,
+body.dark-mode .apy {
+    color: #aaa;
+}
+
+body.dark-mode .details-button,
+body.dark-mode .graph-button {
+    background-color: #0077b6;
+}
+
+body.dark-mode .details-button:hover,
+body.dark-mode .graph-button:hover {
+    background-color: #005f87;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        padding: 15px 20px;
+    }
+
+    header h1 {
+        font-size: 24px;
+    }
+
+    .live-market {
+        padding: 15px;
+        margin: 10px;
+    }
+}
+/* Footer Styles */
+footer {
+    background-color: #2f3b50;  /* Dark background for contrast */
+    color: #fff;  /* White text for visibility */
+    padding: 20px 30px;
+    text-align: center;
+    border-top: 1px solid #333;  /* Subtle border separating from content */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark Mode Footer */
+body.dark-mode footer {
+    background-color: #121212;  /* Darker background in dark mode */
+}
+
+/* Footer Text Styling */
+footer p {
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0;
+    color: #ddd;  /* Light gray text */
+    transition: color 0.3s ease;
+}
+
+footer p:hover {
+    color: #f39c12;  /* Highlight on hover */
+}
+
+/* Footer Links (if any) */
+footer a {
+    color: #0077b6;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 5px 0;
+    transition: all 0.3s ease;
+}
+
+footer a:hover {
+    color: #ffcc00;
+    text-decoration: underline;
+}
+
+/* Additional footer styling for responsiveness */
+@media (max-width: 768px) {
+    footer {
+        padding: 15px;
+    }
+
+    footer p {
+        font-size: 14px;
+    }
+}

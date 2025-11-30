@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeFi Lending - User Profile</title>
+    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="profile-container">
+        <!-- User Basic Information Section -->
+        <div class="profile-header">
+            <div class="profile-image-avatar">
+                <img id="userAvatar" src="default-avatar.png" alt="User Avatar">
+                <div class="edit-avatar">
+                    <i class="fas fa-camera"></i>
+                    <input type="file" id="avatarInput" accept="image/*" style="display: none;">
+                </div>
+                <div class="avatar-fallback">
+                    <span>JS</span>
+                </div>
+            </div>
+            <div class="profile-info">
+                <p class="profile-name">JATIN SONI</p>
+                <p class="email-text">jatin@gmail.com</p>
+                <div class="wallet-info">
+                    <p id="walletAddress">0x1234...5678</p>
+                    <button class="copy-address"><i class="fas fa-copy"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- KYC Verification Status -->
+        <div class="kyc-status">
+            <div class="status-badge" id="kycBadge">
+                <i class="fas fa-shield-alt"></i>
+                <span>KYC Verified</span>
+            </div>
+            <div class="kyc-details">
+                <div class="kyc-level">
+                    <h3>KYC Level: <span id="kycLevel">Advanced</span></h3>
+                </div>
+                <div class="document-preview">
+                    <h3>Verified Documents</h3>
+                    <div class="doc-icons">
+                        <i class="fas fa-id-card verified"></i>
+                        <i class="fas fa-user verified"></i>
+                        <i class="fas fa-home verified"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Asset Overview -->
+        <div class="asset-overview">
+            <h2>Asset Overview</h2>
+            <div class="balance-cards">
+                <div class="balance-card">
+                    <h3>Total Balance</h3>
+                    <p id="totalBalance">$10,000.00</p>
+                </div>
+                <div class="balance-card">
+                    <h3>Collateral Value</h3>
+                    <p id="collateralValue">$5,000.00</p>
+                </div>
+                <div class="balance-card">
+                    <h3>Borrowed Amount</h3>
+                    <p id="borrowedAmount">$2,500.00</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add this after the Asset Overview section -->
+        <div class="gallery-section">
+            <h2>My Gallery</h2>
+            <div class="gallery-upload">
+                <label for="galleryInput" class="upload-btn">
+                    <i class="fas fa-plus"></i>
+                    Upload Images
+                </label>
+                <input type="file" id="galleryInput" accept="image/*" multiple style="display: none;">
+            </div>
+            <div class="gallery-grid" id="imageGallery">
+                <!-- Images will be dynamically added here -->
+            </div>
+        </div>
+
+        <!-- Security Settings -->
+        <div class="security-settings">
+            <h2>Security Settings</h2>
+            <div class="setting-item">
+                <div class="setting-label">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Two-Factor Authentication</span>
+                </div>
+                <div class="toggle-switch">
+                    <input type="checkbox" id="mfaToggle">
+                    <span class="slider"></span>
+                </div>
+            </div>
+            <div class="setting-item">
+                <div class="setting-label">
+                    <i class="fas fa-bell"></i>
+                    <span>Notifications</span>
+                </div>
+                <div class="toggle-switch">
+                    <input type="checkbox" id="notificationsToggle">
+                    <span class="slider"></span>
+                </div>
+            </div>
+            <button class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                Logout
+            </button>
+        </div>
+    </div>
+    <script src="profile.js"></script>
+</body>
+</html>

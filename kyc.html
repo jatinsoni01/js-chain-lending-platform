@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Chain Lending - KYC Verification</title>
+    <link rel="stylesheet" href="kyc.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo-container">
+                <img src="assets/images/logo.png" 
+                     alt="JS Chain Lending Logo" 
+                     class="logo-img">
+                <div class="logo-text">
+                    <span class="blockchain">BLOCKCHAIN LENDING</span>
+                </div>
+            </div>
+            
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="afterlogin.html" class="nav-link">
+                            <i class="fas fa-home"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <span class="hamburger-icon"></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="kyc-container">
+        <h1>KYC Verification</h1>
+        <p class="subtitle">Please complete your verification to continue</p>
+
+        <form id="kycForm" class="kyc-form">
+            <!-- Step 1: Personal Information -->
+            <div class="form-step active" data-step="1">
+                <div class="form-section">
+                    <h2>Personal Information</h2>
+                    <div class="form-group">
+                        <label for="fullName">Full Name (as per documents)</label>
+                        <input type="text" id="fullName" required pattern="[A-Za-z\s]{3,50}"
+                            title="Please enter a valid name (3-50 characters, letters only)">
+                    </div>
+                    <div class="form-group">
+                        <label for="dob">Date of Birth</label>
+                        <input type="date" id="dob" required max="2005-12-31">
+                        <small class="input-hint">Must be 18 years or older</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <select id="gender" required>
+                            <option value="">Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Mobile Number</label>
+                        <div class="phone-input">
+                            <select id="phoneCode" required>
+                                <option value="+91">+91 (IN)</option>
+                            </select>
+                            <input type="tel" id="phone" pattern="[0-9]{10}" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Current Address</label>
+                        <textarea id="address" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="pincode">PIN Code</label>
+                        <input type="text" id="pincode" pattern="[0-9]{6}" required>
+                    </div>
+                </div>
+                <div class="form-navigation">
+                    <button type="button" class="btn next-step">Continue</button>
+                </div>
+            </div>
+
+            <!-- Step 2: Document Upload -->
+            <div class="form-step" data-step="2">
+                <div class="form-section document-section">
+                    <h2>Document Verification</h2>
+                    <div class="document-guidelines">
+                        <div class="guideline-item">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Please ensure all documents are:</span>
+                            <ul>
+                                <li>Clear and readable</li>
+                                <li>Original documents (no photocopies)</li>
+                                <li>Not expired</li>
+                                <li>Complete with all corners visible</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Aadhar Card Section -->
+                    <div class="document-container">
+                        <h3><i class="fas fa-id-card"></i> Aadhar Card Verification</h3>
+                        <div class="document-requirements">
+                            <p>Requirements:</p>
+                            <ul>
+                                <li>Both front and back sides required</li>
+                                <li>12-digit Aadhar number must be clearly visible</li>
+                                <li>QR code should be clear and scannable</li>
+                            </ul>
+                        </div>
+                        <div class="form-group">
+                            <label for="aadharNumber">Aadhar Number</label>
+                            <input type="text" id="aadharNumber" class="aadhar-input" 
+                                pattern="[0-9]{4}\s[0-9]{4}\s[0-9]{4}" 
+                                placeholder="1234 5678 9012" required>
+                            <div class="input-hint">Format: 1234 5678 9012</div>
+                        </div>
+                        <div class="document-upload-grid">
+                            <div class="upload-box">
+                                <label>Front Side</label>
+                                <div class="file-upload">
+                                    <input type="file" id="aadharFront" accept="image/*" required>
+                                    <label for="aadharFront" class="file-label">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <span>Upload Front Side</span>
+                                        <small>Click or drag & drop</small>
+                                    </label>
+                                </div>
+                                <div id="aadharFrontPreview" class="document-preview"></div>
+                                <div class="upload-actions" style="display: none;">
+                                    <button type="button" class="view-document-btn">
+                                        <i class="fas fa-file-image"></i> View Uploaded Document
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="upload-box">
+                                <label>Back Side</label>
+                                <div class="file-upload">
+                                    <input type="file" id="aadharBack" accept="image/*" required>
+                                    <label for="aadharBack" class="file-label">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <span>Upload Back Side</span>
+                                        <small>Click or drag & drop</small>
+                                    </label>
+                                </div>
+                                <div id="aadharBackPreview" class="document-preview"></div>
+                                <div class="upload-actions" style="display: none;">
+                                    <button type="button" class="view-document-btn">
+                                        <i class="fas fa-file-image"></i> View Uploaded Document
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PAN Card Section -->
+                    <div class="document-container">
+                        <h3><i class="fas fa-address-card"></i> PAN Card Verification</h3>
+                        <div class="document-requirements">
+                            <p>Requirements:</p>
+                            <ul>
+                                <li>Original PAN card only</li>
+                                <li>PAN number must be clearly visible</li>
+                                <li>Photo on PAN card should be clear</li>
+                            </ul>
+                        </div>
+                        <div class="form-group">
+                            <label for="panNumber">PAN Number</label>
+                            <input type="text" id="panNumber" 
+                                pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" 
+                                placeholder="ABCDE1234F" required>
+                            <div class="input-hint">Format: ABCDE1234F</div>
+                        </div>
+                        <div class="document-upload-single">
+                            <div class="upload-box">
+                                <div class="file-upload">
+                                    <input type="file" id="panCardPhoto" accept="image/*" required>
+                                    <label for="panCardPhoto" class="file-label">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <span>Upload PAN Card</span>
+                                        <small>Click or drag & drop</small>
+                                    </label>
+                                </div>
+                                <div id="panCardPreview" class="document-preview"></div>
+                                <div class="upload-actions" style="display: none;">
+                                    <button type="button" class="view-document-btn">
+                                        <i class="fas fa-file-image"></i> View Uploaded Document
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-navigation">
+                    <button type="button" class="btn prev-step">Back</button>
+                    <button type="button" class="btn next-step">Continue</button>
+                </div>
+            </div>
+
+            <!-- Add this section after the Document Upload section and before Photo Verification -->
+            <div class="form-section">
+                <h2><i class="fas fa-university"></i> Bank Account Verification</h2>
+                <div class="bank-verification-info">
+                    <p class="info-text">
+                        <i class="fas fa-info-circle"></i>
+                        Please ensure the bank account is in your name and matches your KYC documents
+                    </p>
+                </div>
+
+                <div class="form-group">
+                    <label for="accountHolder">Account Holder Name</label>
+                    <input type="text" id="accountHolder" required 
+                        placeholder="Enter account holder name as per bank records">
+                    <small class="input-hint">Name should match with your KYC documents</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="accountNumber">Account Number</label>
+                    <div class="secure-input-group">
+                        <input type="text" id="accountNumber" required 
+                            pattern="[0-9]{9,18}"
+                            placeholder="Enter your bank account number">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <small class="input-hint">Enter your bank account number (9-18 digits)</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmAccountNumber">Confirm Account Number</label>
+                    <div class="secure-input-group">
+                        <input type="text" id="confirmAccountNumber" required 
+                            pattern="[0-9]{9,18}"
+                            placeholder="Re-enter your bank account number">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="ifscCode">IFSC Code</label>
+                    <div class="ifsc-input-group">
+                        <input type="text" id="ifscCode" required 
+                            pattern="^[A-Z]{4}0[A-Z0-9]{6}$"
+                            placeholder="Enter IFSC code (e.g., HDFC0001234)"
+                            maxlength="11">
+                        <button type="button" id="verifyIFSC" class="btn verify-btn">
+                            <i class="fas fa-search"></i> Verify IFSC
+                        </button>
+                    </div>
+                    <small class="input-hint">11-character IFSC code of your bank branch</small>
+                </div>
+
+                <div id="bankDetails" class="bank-details-card" style="display: none;">
+                    <div class="bank-info-header">
+                        <i class="fas fa-university"></i>
+                        <span>Bank Details</span>
+                    </div>
+                    <div class="bank-info-content">
+                        <p class="bank-name"></p>
+                        <p class="branch-name"></p>
+                        <p class="branch-address"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add this section after the document verification section -->
+            <div class="form-section device-verification">
+                <h2><i class="fas fa-shield-alt"></i> Security Verification</h2>
+                
+                <!-- Device Information -->
+                <div class="verification-block">
+                    <h3><i class="fas fa-laptop"></i> Device Information</h3>
+                    <div class="device-info">
+                        <p><i class="fas fa-desktop"></i> <span id="deviceType">Detecting...</span></p>
+                        <p><i class="fas fa-globe"></i> <span id="browserInfo">Detecting...</span></p>
+                        <p><i class="fas fa-network-wired"></i> <span id="connectionInfo">Detecting...</span></p>
+                    </div>
+                    <button type="button" id="verifyDevice" class="btn verify-btn">
+                        <i class="fas fa-check-circle"></i> Verify Device
+                    </button>
+                    <div id="deviceStatus" class="status-message"></div>
+                </div>
+
+                <!-- Location Verification -->
+                <div class="verification-block">
+                    <h3><i class="fas fa-map-marker-alt"></i> Location Verification</h3>
+                    <div class="location-info">
+                        <p><i class="fas fa-location-arrow"></i> <span id="locationInfo">Waiting for permission...</span></p>
+                        <div id="map" class="location-map"></div>
+                        <div class="location-details">
+                            <p><i class="fas fa-map"></i> <span id="addressInfo">Address will appear here</span></p>
+                            <p><i class="fas fa-city"></i> <span id="cityInfo">City will appear here</span></p>
+                        </div>
+                    </div>
+                    <button type="button" id="verifyLocation" class="btn verify-btn">
+                        <i class="fas fa-map-pin"></i> Verify Location
+                    </button>
+                    <div id="locationStatus" class="status-message"></div>
+                </div>
+            </div>
+
+            <!-- Step 3: Verification -->
+            <div class="form-step" data-step="3">
+                <div class="form-section">
+                    <h2>Live Photo Verification</h2>
+                    <div class="camera-container">
+                        <video id="videoElement" autoplay playsinline></video>
+                        <canvas id="photoCanvas" style="display: none;"></canvas>
+                        <div class="camera-guide">
+                            <div class="face-outline"></div>
+                        </div>
+                        <div class="camera-buttons">
+                            <button type="button" id="startCamera" class="btn">
+                                <i class="fas fa-camera"></i> Start Camera
+                            </button>
+                            <button type="button" id="capturePhoto" class="btn" disabled>
+                                <i class="fas fa-camera-retro"></i> Capture Photo
+                            </button>
+                        </div>
+                        <div id="photoPreview" class="photo-preview"></div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2>Final Verification</h2>
+                    <div class="verification-checklist">
+                        <div class="check-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Personal Information</span>
+                        </div>
+                        <div class="check-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Document Upload</span>
+                        </div>
+                        <div class="check-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Photo Verification</span>
+                        </div>
+                    </div>
+                    <div class="verification-summary">
+                        <p class="verification-note">
+                            <i class="fas fa-info-circle"></i>
+                            Please review all information before final submission
+                        </p>
+                    </div>
+                    <div class="consent-section">
+                        <label class="checkbox-container">
+                            <input type="checkbox" required>
+                            <span class="checkmark"></span>
+                            I confirm that all the information provided is accurate and authentic
+                        </label>
+                    </div>
+                </div>
+                <div class="form-navigation">
+                    <button type="button" class="btn prev-step">Back</button>
+                    <button type="submit" class="btn submit-btn">Submit KYC</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="kyc.js"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Graph - JS Chain Lending</title>
+    <link rel="icon" href="frontend/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="market-graph.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1>Market Graph</h1>
+            <div class="header-buttons">
+                <button id="home-button" onclick="window.location.href='market.html'">Dashboard</button>
+                <button id="dashboard-button" onclick="window.location.href='new-index.html'">🏠 Home</button>
+                
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="graph-container">
+            <div class="coin-info" id="coin-info"></div>
+            <canvas id="priceChart"></canvas>
+            <div class="additional-info" id="additional-info"></div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 JS Chain Lending. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const coinId = urlParams.get('coinId');
+        const API_URL = `https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=30&interval=daily`;
+
+        async function fetchMarketChartData() {
+            try {
+                const response = await fetch(API_URL);
+                const data = await response.json();
+                const prices = data.prices.map(price => price[1]);
+                const labels = data.prices.map(price => {
+                    const date = new Date(price[0]);
+                    return date.toLocaleDateString();
+                });
+
+                const ctx = document.getElementById('priceChart').getContext('2d');
+                const priceChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Price in USD',
+                            data: prices,
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderWidth: 2,
+                            fill: true,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: false,
+                                title: {
+                                    display: true,
+                                    text: 'Price (USD)'
+                                }
+                            },
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Date'
+                                }
+                            }
+                        }
+                    }
+                });
+
+                // Display coin information
+                const coinInfoDiv = document.getElementById('coin-info');
+                coinInfoDiv.innerHTML = `<h2>${coinId.toUpperCase()}</h2>`;
+
+                // Fetch additional coin data
+                fetchAdditionalCoinData(coinId);
+            } catch (error) {
+                console.error('Error fetching market chart data:', error);
+            }
+        }
+
+        async function fetchAdditionalCoinData(coinId) {
+            const additionalAPI_URL = `https://api.coingecko.com/api/v3/coins/${coinId}`;
+            try {
+                const response = await fetch(additionalAPI_URL);
+                const data = await response.json();
+                const additionalInfoDiv = document.getElementById('additional-info');
+
+                additionalInfoDiv.innerHTML = `
+                    <h3>Additional Information</h3>
+                    <ul>
+                        <li><strong>Market Cap:</strong> $${data.market_data.market_cap.usd.toLocaleString()}</li>
+                        <li><strong>24h Trading Volume:</strong> $${data.market_data.total_volume.usd.toLocaleString()}</li>
+                        <li><strong>Circulating Supply:</strong> ${data.market_data.circulating_supply.toLocaleString()} ${data.symbol.toUpperCase()}</li>
+                        <li><strong>All-Time High:</strong> $${data.market_data.ath.usd.toLocaleString()} (${new Date(data .market_data.ath_date).toDateString()})</li>
+                        <li><strong>All-Time Low:</strong> $${data.market_data.atl.usd.toLocaleString()} (${new Date(data.market_data.atl_date).toDateString()})</li>
+                    </ul>
+                `;
+            } catch (error) {
+                console.error('Error fetching additional coin data:', error);
+            }
+        }
+
+        window.addEventListener('load', fetchMarketChartData);
+    </script>
+</body>
+</html>

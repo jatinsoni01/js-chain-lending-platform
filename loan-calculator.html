@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Collateral Loan Calculator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="loancalculator.css" />
+    <!-- Add Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <!-- Header Section -->
+    <header>
+      <div class="header-container">
+        <div class="logo-container">
+          <img src="assets/images/logo.png" alt="JS Chain Logo" class="header-logo">
+          <a href="" class="logo">Blockchain Lending</a>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="afterlogin.html">Home</a></li>
+          </ul>
+        </nav>
+        <div class="highway-lane"></div>
+        <div class="moving-car">🚗</div>
+      </div>
+    </header>
+
+    <!-- Main Loan Calculator Section -->
+    <section class="calculator-section">
+      <!-- Background Video -->
+      <video autoplay muted loop class="background-video">
+        <source src="assets/videos/loan calculaor.mp4" type="video/mp4" />
+        <source src="assets/videos/loan_calculator.webm" type="video/webm" />
+        <source src="assets/videos/loan_calculator.ogg" type="video/ogg" />
+        Your browser does not support the video tag.
+      </video>
+
+      <div class="calculator-container animate__animated animate__fadeIn">
+        <h1 class="glow-text">Smart Collateral Loan Calculator</h1>
+        
+        <!-- Quick Info Cards -->
+        <div class="info-cards">
+          <div class="info-card">
+            <div class="info-icon">💎</div>
+            <h4>Gold LTV</h4>
+            <p>Up to 75%</p>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">🚗</div>
+            <h4>Car LTV</h4>
+            <p>Up to 70%</p>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">🏠</div>
+            <h4>Property LTV</h4>
+            <p>Up to 65%</p>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">⚪</div>
+            <h4>Silver LTV</h4>
+            <p>Up to 65%</p>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">₿</div>
+            <h4>Crypto LTV</h4>
+            <p>Up to 60%</p>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">📈</div>
+            <h4>Stocks/MF LTV</h4>
+            <p>Up to 50%</p>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">📋</div>
+            <h4>Insurance LTV</h4>
+            <p>Up to 85%</p>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">🏭</div>
+            <h4>Equipment LTV</h4>
+            <p>Up to 70%</p>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">💎</div>
+            <h4>Jewelry LTV</h4>
+            <p>Up to 70%</p>
+          </div>
+        </div>
+
+        <!-- Collateral Type Selection with Icons -->
+        <div class="collateral-selector">
+          <h3>Select Collateral Types</h3>
+          <div class="selector-buttons">
+            <button type="button" class="selector-btn active" data-collateral="gold" onclick="toggleCollateral(this)">
+              <div class="btn-content">
+                <span class="btn-icon">💎</span>
+                <span class="btn-text">Gold</span>
+                <span class="btn-detail">24K • 22K • 18K</span>
+              </div>
+            </button>
+            <button type="button" class="selector-btn" data-collateral="car" onclick="toggleCollateral(this)">
+              <div class="btn-content">
+                <span class="btn-icon">🚗</span>
+                <span class="btn-text">Car</span>
+                <span class="btn-detail">All Models</span>
+              </div>
+            </button>
+            <button type="button" class="selector-btn" data-collateral="property" onclick="toggleCollateral(this)">
+              <div class="btn-content">
+                <span class="btn-icon">🏠</span>
+                <span class="btn-text">Property</span>
+                <span class="btn-detail">Urban • Suburban • Rural</span>
+              </div>
+            </button>
+            <button type="button" class="selector-btn" data-collateral="silver" onclick="toggleCollateral(this)">
+              <div class="btn-content">
+                <span class="btn-icon">⚪</span>
+                <span class="btn-text">Silver</span>
+                <span class="btn-detail">999 • 925 • 800</span>
+              </div>
+            </button>
+            <button type="button" class="selector-btn" data-collateral="crypto" onclick="toggleCollateral(this)">
+              <div class="btn-content">
+                <span class="btn-icon">₿</span>
+                <span class="btn-text">Crypto</span>
+                <span class="btn-detail">BTC • ETH • BNB</span>
+              </div>
+            </button>
+            <button type="button" class="selector-btn" data-collateral="stocks" onclick="toggleCollateral(this)">
+              <div class="btn-content">
+                <span class="btn-icon">📈</span>
+                <span class="btn-text">Stocks/MF</span>
+                <span class="btn-detail">Equity • Debt • Hybrid</span>
+              </div>
+            </button>
+            <button type="button" class="selector-btn" data-collateral="insurance" onclick="toggleCollateral(this)">
+              <div class="btn-content">
+                <span class="btn-icon">📋</span>
+                <span class="btn-text">Insurance</span>
+                <span class="btn-detail">Life • Endowment • ULIP</span>
+              </div>
+            </button>
+            <button type="button" class="selector-btn" data-collateral="equipment" onclick="toggleCollateral(this)">
+              <div class="btn-content">
+                <span class="btn-icon">🏭</span>
+                <span class="btn-text">Equipment</span>
+                <span class="btn-detail">Machinery • Tools • Tech</span>
+              </div>
+            </button>
+            <button type="button" class="selector-btn" data-collateral="jewelry" onclick="toggleCollateral(this)">
+              <div class="btn-content">
+                <span class="btn-icon">💎</span>
+                <span class="btn-text">Jewelry</span>
+                <span class="btn-detail">Diamond • Ruby • Emerald</span>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Add progress bar -->
+        <div class="progress-container">
+          <div class="progress-bar">
+            <div class="progress" id="calculationProgress"></div>
+          </div>
+          <p class="progress-text">Complete all fields for accurate calculation</p>
+        </div>
+
+        <!-- Gold Section -->
+        <div class="collateral-section" id="goldSection">
+          <h2>💎 Gold Collateral</h2>
+          <div class="input-group">
+            <label for="goldWeight">Gold Weight (grams)</label>
+            <input type="number" id="goldWeight" class="neo-input" placeholder="Enter gold weight">
+          </div>
+          <div class="loan-term">
+            <label>Loan Term:</label>
+            <select id="goldTerm" class="neo-input">
+              <option value="1">1 Month</option>
+              <option value="3">3 Months</option>
+              <option value="6">6 Months</option>
+              <option value="12">1 Year</option>
+              <option value="24">2 Years</option>
+              <option value="36">3 Years</option>
+            </select>
+          </div>
+          <div class="date-picker">
+            <label>Loan Start Date:</label>
+            <input type="date" id="goldStartDate" class="neo-input" onchange="calculateLoan()">
+          </div>
+        </div>
+
+        <!-- Silver Section -->
+        <div class="collateral-section" id="silverSection" style="display: none;">
+          <h2>⚪ Silver Collateral</h2>
+          <div class="input-group">
+            <label for="silverWeight">Silver Weight (grams)</label>
+            <input type="number" id="silverWeight" class="neo-input" placeholder="Enter silver weight">
+          </div>
+          <div class="loan-term">
+            <label>Loan Term:</label>
+            <select id="silverTerm" class="neo-input">
+              <option value="1">1 Month</option>
+              <option value="3">3 Months</option>
+              <option value="6">6 Months</option>
+              <option value="12">1 Year</option>
+              <option value="24">2 Years</option>
+              <option value="36">3 Years</option>
+            </select>
+          </div>
+          <div class="date-picker">
+            <label>Loan Start Date:</label>
+            <input type="date" id="silverStartDate" class="neo-input" onchange="calculateLoan()">
+          </div>
+        </div>
+
+        <!-- Car Section -->
+        <div class="collateral-section" id="carSection" style="display: none;">
+          <h2>🚗 Car Collateral</h2>
+          <div class="input-group">
+            <label for="carValue">Car Value (₹)</label>
+            <input type="number" id="carValue" class="neo-input" placeholder="Enter car value">
+          </div>
+          <div class="input-group">
+            <label for="carAge">Car Age (years)</label>
+            <input type="number" id="carAge" class="neo-input" placeholder="Enter car age">
+          </div>
+          <div class="loan-term">
+            <label>Loan Term:</label>
+            <select id="carTerm" class="neo-input">
+              <option value="1">1 Month</option>
+              <option value="3">3 Months</option>
+              <option value="6">6 Months</option>
+              <option value="12">1 Year</option>
+              <option value="24">2 Years</option>
+              <option value="36">3 Years</option>
+            </select>
+          </div>
+          <div class="date-picker">
+            <label>Loan Start Date:</label>
+            <input type="date" id="carStartDate" class="neo-input" onchange="calculateLoan()">
+          </div>
+        </div>
+
+        <!-- Property Section -->
+        <div class="collateral-section" id="propertySection" style="display: none;">
+          <h2>🏠 Property Collateral</h2>
+          <div class="input-group">
+            <label for="propertyValue">Property Value (₹)</label>
+            <input type="number" id="propertyValue" class="neo-input" placeholder="Enter property value">
+          </div>
+          <div class="property-type">
+            <label>Location Type:</label>
+            <select id="propertyLocation" class="neo-input">
+              <option value="urban">Urban (Prime Location)</option>
+              <option value="suburban">Suburban</option>
+              <option value="rural">Rural</option>
+            </select>
+          </div>
+          <div class="loan-term">
+            <label>Loan Term:</label>
+            <select id="propertyTerm" class="neo-input">
+              <option value="1">1 Month</option>
+              <option value="3">3 Months</option>
+              <option value="6">6 Months</option>
+              <option value="12">1 Year</option>
+              <option value="24">2 Years</option>
+              <option value="36">3 Years</option>
+            </select>
+          </div>
+          <div class="date-picker">
+            <label>Loan Start Date:</label>
+            <input type="date" id="propertyStartDate" class="neo-input" onchange="calculateLoan()">
+          </div>
+        </div>
+
+        <!-- Crypto Section -->
+        <div class="collateral-section" id="cryptoSection" style="display: none;">
+          <h2>₿ Cryptocurrency Collateral</h2>
+          <div class="input-group">
+            <label for="cryptoType">Cryptocurrency</label>
+            <select id="cryptoType" class="neo-input" onchange="updateCryptoPrice()">
+              <option value="BTC">Bitcoin (BTC)</option>
+              <option value="ETH">Ethereum (ETH)</option>
+              <option value="BNB">Binance Coin (BNB)</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="cryptoAmount">Amount</label>
+            <input type="number" id="cryptoAmount" class="neo-input" placeholder="Enter crypto amount" step="0.0001">
+          </div>
+          <div class="loan-term">
+            <label>Loan Term:</label>
+            <select id="cryptoTerm" class="neo-input">
+              <option value="1">1 Month</option>
+              <option value="3">3 Months</option>
+              <option value="6">6 Months</option>
+              <option value="12">1 Year</option>
+            </select>
+          </div>
+          <div class="date-picker">
+            <label>Loan Start Date:</label>
+            <input type="date" id="cryptoStartDate" class="neo-input" onchange="calculateLoan()">
+          </div>
+        </div>
+
+        <!-- Stocks Section -->
+        <div class="collateral-section" id="stocksSection" style="display: none;">
+          <h2>📈 Stocks/Mutual Funds Collateral</h2>
+          <div class="input-group">
+            <label for="investmentType">Investment Type</label>
+            <select id="investmentType" class="neo-input">
+              <option value="equity">Equity Stocks</option>
+              <option value="mutualFund">Mutual Funds</option>
+              <option value="etf">ETFs</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="portfolioValue">Portfolio Value (₹)</label>
+            <input type="number" id="portfolioValue" class="neo-input" placeholder="Enter current market value">
+          </div>
+          <div class="loan-term">
+            <label>Loan Term:</label>
+            <select id="stocksTerm" class="neo-input">
+              <option value="1">1 Month</option>
+              <option value="3">3 Months</option>
+              <option value="6">6 Months</option>
+              <option value="12">1 Year</option>
+            </select>
+          </div>
+          <div class="date-picker">
+            <label>Loan Start Date:</label>
+            <input type="date" id="stocksStartDate" class="neo-input" onchange="calculateLoan()">
+          </div>
+        </div>
+
+        <!-- Insurance Section -->
+        <div class="collateral-section" id="insuranceSection" style="display: none;">
+          <h2>📋 Insurance Policy Collateral</h2>
+          <div class="input-group">
+            <label for="policyType">Policy Type</label>
+            <select id="policyType" class="neo-input">
+              <option value="life">Life Insurance</option>
+              <option value="endowment">Endowment Policy</option>
+              <option value="ulip">ULIP</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="surrenderValue">Surrender Value (₹)</label>
+            <input type="number" id="surrenderValue" class="neo-input" placeholder="Enter surrender value">
+          </div>
+          <div class="input-group">
+            <label for="policyAge">Policy Age (years)</label>
+            <input type="number" id="policyAge" class="neo-input" placeholder="Enter policy age">
+          </div>
+          <div class="loan-term">
+            <label>Loan Term:</label>
+            <select id="insuranceTerm" class="neo-input">
+              <option value="12">1 Year</option>
+              <option value="24">2 Years</option>
+              <option value="36">3 Years</option>
+            </select>
+          </div>
+          <div class="date-picker">
+            <label>Loan Start Date:</label>
+            <input type="date" id="insuranceStartDate" class="neo-input" onchange="calculateLoan()">
+          </div>
+        </div>
+
+        <!-- Equipment Section -->
+        <div class="collateral-section" id="equipmentSection" style="display: none;">
+          <h2>🏭 Business Equipment Collateral</h2>
+          <div class="input-group">
+            <label for="equipmentType">Equipment Type</label>
+            <select id="equipmentType" class="neo-input">
+              <option value="machinery">Heavy Machinery</option>
+              <option value="tools">Industrial Tools</option>
+              <option value="tech">Technology Equipment</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="equipmentValue">Equipment Value (₹)</label>
+            <input type="number" id="equipmentValue" class="neo-input" placeholder="Enter current value">
+          </div>
+          <div class="input-group">
+            <label for="equipmentAge">Equipment Age (years)</label>
+            <input type="number" id="equipmentAge" class="neo-input" placeholder="Enter equipment age">
+          </div>
+          <div class="loan-term">
+            <label>Loan Term:</label>
+            <select id="equipmentTerm" class="neo-input">
+              <option value="12">1 Year</option>
+              <option value="24">2 Years</option>
+              <option value="36">3 Years</option>
+            </select>
+          </div>
+          <div class="date-picker">
+            <label>Loan Start Date:</label>
+            <input type="date" id="equipmentStartDate" class="neo-input" onchange="calculateLoan()">
+          </div>
+        </div>
+
+        <!-- Jewelry Section -->
+        <div class="collateral-section" id="jewelrySection" style="display: none;">
+          <h2>💎 Jewelry & Precious Stones Collateral</h2>
+          <div class="input-group">
+            <label for="jewelryType">Jewelry Type</label>
+            <select id="jewelryType" class="neo-input">
+              <option value="diamond">Diamond Jewelry</option>
+              <option value="ruby">Ruby Jewelry</option>
+              <option value="emerald">Emerald Jewelry</option>
+              <option value="sapphire">Sapphire Jewelry</option>
+              <option value="pearl">Pearl Jewelry</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="jewelryWeight">Weight (carats)</label>
+            <input type="number" id="jewelryWeight" class="neo-input" placeholder="Enter weight in carats" step="0.01">
+          </div>
+          <div class="input-group">
+            <label for="jewelryValue">Appraised Value (₹)</label>
+            <input type="number" id="jewelryValue" class="neo-input" placeholder="Enter appraised value">
+          </div>
+          <div class="input-group">
+            <label for="jewelryAge">Age of Jewelry (years)</label>
+            <input type="number" id="jewelryAge" class="neo-input" placeholder="Enter age of jewelry">
+          </div>
+          <div class="loan-term">
+            <label>Loan Term:</label>
+            <select id="jewelryTerm" class="neo-input">
+              <option value="3">3 Months</option>
+              <option value="6">6 Months</option>
+              <option value="12">1 Year</option>
+              <option value="24">2 Years</option>
+            </select>
+          </div>
+          <div class="date-picker">
+            <label>Loan Start Date:</label>
+            <input type="date" id="jewelryStartDate" class="neo-input" onchange="calculateLoan()">
+          </div>
+        </div>
+
+        <!-- Enhanced Calculate Button -->
+        <button onclick="calculateLoan()" class="calculate-btn neo-button">
+          <div class="btn-content">
+            <span class="btn-icon"></span>
+            <span class="btn-text">Calculate Loan</span>
+            <span class="btn-detail">Get instant results</span>
+          </div>
+        </button>
+
+        <!-- Add floating stats -->
+        <div class="floating-stats" id="floatingStats">
+          <div class="stat-item">
+            <span class="stat-label">Total Eligible Loan</span>
+            <span class="stat-value" id="totalLoanStat">₹0</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Average Interest</span>
+            <span class="stat-value" id="avgInterestStat">0%</span>
+          </div>
+          </div>
+
+        <div id="results" class="results-section">
+          <!-- Results will be populated by JavaScript -->
+        </div>
+
+        <div class="chart-container">
+          <canvas id="loanChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      let loanChart = null;
+
+      function calculateLoan() {
+        // Get input values
+        const goldWeight = parseFloat(document.getElementById('goldWeight').value) || 0;
+        const goldTerm = parseInt(document.getElementById('goldTerm').value) || 0;
+        
+        const carValue = parseFloat(document.getElementById('carValue').value) || 0;
+        const carAge = parseFloat(document.getElementById('carAge').value) || 0;
+        const carTerm = parseInt(document.getElementById('carTerm').value) || 0;
+        
+        const propertyValue = parseFloat(document.getElementById('propertyValue').value) || 0;
+        const propertyLocation = document.getElementById('propertyLocation').value;
+        const propertyTerm = parseInt(document.getElementById('propertyTerm').value) || 0;
+
+        // Get start dates
+        const goldStartDate = document.getElementById('goldStartDate').value;
+        const carStartDate = document.getElementById('carStartDate').value;
+        const propertyStartDate = document.getElementById('propertyStartDate').value;
+
+        // Calculate gold loan
+        const goldPrice = 5500; // Current gold price per gram in INR
+        const goldValue = goldWeight * goldPrice;
+        const goldLTV = 0.75; // 75% LTV for gold
+        const goldInterestRate = calculateGoldInterest(goldWeight, goldTerm);
+        const goldLoanAmount = goldValue * goldLTV;
+
+        // Calculate car loan
+        const carLTV = calculateCarLTV(carAge);
+        const carInterestRate = calculateCarInterest(carAge, carTerm);
+        const carLoanAmount = carValue * carLTV;
+
+        // Calculate property loan
+        const propertyLTV = 0.65; // 65% LTV for property
+        const propertyInterestRate = calculatePropertyInterest(propertyLocation, propertyTerm);
+        const propertyLoanAmount = propertyValue * propertyLTV;
+
+        // Calculate silver loan
+        const silverWeight = parseFloat(document.getElementById('silverWeight').value) || 0;
+        const silverTerm = parseInt(document.getElementById('silverTerm').value) || 0;
+        const silverStartDate = document.getElementById('silverStartDate').value;
+        const silverPrice = 75; // Current silver price per gram in INR
+        const silverValue = silverWeight * silverPrice;
+        const silverLTV = 0.65; // 65% LTV for silver
+        const silverInterestRate = calculateSilverInterest(silverWeight, silverTerm);
+        const silverLoanAmount = silverValue * silverLTV;
+
+        // Calculate crypto loan
+        const cryptoType = document.getElementById('cryptoType').value;
+        const cryptoAmount = parseFloat(document.getElementById('cryptoAmount').value) || 0;
+        const cryptoTerm = parseInt(document.getElementById('cryptoTerm').value) || 0;
+        const cryptoStartDate = document.getElementById('cryptoStartDate').value;
+        
+        const cryptoPrice = getCryptoPrice(cryptoType);
+        const cryptoValue = cryptoAmount * cryptoPrice;
+        const cryptoLTV = 0.60; // 60% LTV for crypto
+        const cryptoInterestRate = calculateCryptoInterest(cryptoType, cryptoAmount, cryptoTerm);
+        const cryptoLoanAmount = cryptoValue * cryptoLTV;
+
+        // Calculate stocks loan
+        const investmentType = document.getElementById('investmentType').value;
+        const portfolioValue = parseFloat(document.getElementById('portfolioValue').value) || 0;
+        const stocksTerm = parseInt(document.getElementById('stocksTerm').value) || 0;
+        const stocksStartDate = document.getElementById('stocksStartDate').value;
+        const stocksLTV = 0.50; // 50% LTV for stocks
+        const stocksInterestRate = calculateStocksInterest(investmentType, portfolioValue, stocksTerm);
+        const stocksLoanAmount = portfolioValue * stocksLTV;
+
+        // Calculate insurance loan
+        const policyType = document.getElementById('policyType').value;
+        const surrenderValue = parseFloat(document.getElementById('surrenderValue').value) || 0;
+        const policyAge = parseFloat(document.getElementById('policyAge').value) || 0;
+        const insuranceTerm = parseInt(document.getElementById('insuranceTerm').value) || 0;
+        const insuranceStartDate = document.getElementById('insuranceStartDate').value;
+        const insuranceLTV = 0.85; // 85% LTV for insurance
+        const insuranceInterestRate = calculateInsuranceInterest(policyType, surrenderValue, policyAge, insuranceTerm);
+        const insuranceLoanAmount = surrenderValue * insuranceLTV;
+
+        // Calculate equipment loan
+        const equipmentType = document.getElementById('equipmentType').value;
+        const equipmentValue = parseFloat(document.getElementById('equipmentValue').value) || 0;
+        const equipmentAge = parseFloat(document.getElementById('equipmentAge').value) || 0;
+        const equipmentTerm = parseInt(document.getElementById('equipmentTerm').value) || 0;
+        const equipmentStartDate = document.getElementById('equipmentStartDate').value;
+        const equipmentLTV = 0.70; // 70% LTV for equipment
+        const equipmentInterestRate = calculateEquipmentInterest(equipmentType, equipmentValue, equipmentAge, equipmentTerm);
+        const equipmentLoanAmount = equipmentValue * equipmentLTV;
+
+        // Calculate jewelry loan
+        const jewelryType = document.getElementById('jewelryType').value;
+        const jewelryWeight = parseFloat(document.getElementById('jewelryWeight').value) || 0;
+        const jewelryValue = parseFloat(document.getElementById('jewelryValue').value) || 0;
+        const jewelryAge = parseFloat(document.getElementById('jewelryAge').value) || 0;
+        const jewelryTerm = parseInt(document.getElementById('jewelryTerm').value) || 0;
+        const jewelryStartDate = document.getElementById('jewelryStartDate').value;
+        const jewelryLTV = 0.70; // 70% LTV for jewelry
+        const jewelryInterestRate = calculateJewelryInterest(jewelryType, jewelryWeight, jewelryValue, jewelryAge, jewelryTerm);
+        const jewelryLoanAmount = jewelryValue * jewelryLTV;
+
+        // Total calculations
+        const totalLoanAmount = goldLoanAmount + carLoanAmount + propertyLoanAmount + silverLoanAmount + 
+                              cryptoLoanAmount + stocksLoanAmount + insuranceLoanAmount + equipmentLoanAmount +
+                              jewelryLoanAmount;
+        const totalCollateral = goldValue + carValue + propertyValue + silverValue + cryptoValue + 
+                              portfolioValue + surrenderValue + equipmentValue + jewelryValue;
+
+        // Format currency
+        const formatINR = (amount) => {
+          return new Intl.NumberFormat('en-IN', {
+            style: 'currency',
+            currency: 'INR'
+          }).format(amount);
+        };
+
+        // Update EMI calculations to use term months
+        const calculateEMI = (principal, rate, termMonths) => {
+          const monthlyRate = (rate / 12) / 100;
+          const emi = principal * monthlyRate * Math.pow(1 + monthlyRate, termMonths) / 
+                    (Math.pow(1 + monthlyRate, termMonths) - 1);
+          return emi;
+        };
+
+        // Calculate repayment schedules
+        const goldSchedule = goldWeight > 0 ? getRepaymentSchedule(goldStartDate, goldLoanAmount, goldInterestRate, goldTerm) : null;
+        const carSchedule = carValue > 0 ? getRepaymentSchedule(carStartDate, carLoanAmount, carInterestRate, carTerm) : null;
+        const propertySchedule = propertyValue > 0 ? getRepaymentSchedule(propertyStartDate, propertyLoanAmount, propertyInterestRate, propertyTerm) : null;
+        const silverSchedule = silverWeight > 0 ? getRepaymentSchedule(silverStartDate, silverLoanAmount, silverInterestRate, silverTerm) : null;
+        const cryptoSchedule = cryptoAmount > 0 ? getRepaymentSchedule(cryptoStartDate, cryptoLoanAmount, cryptoInterestRate, cryptoTerm) : null;
+        const stocksSchedule = portfolioValue > 0 ? getRepaymentSchedule(stocksStartDate, stocksLoanAmount, stocksInterestRate, stocksTerm) : null;
+        const insuranceSchedule = surrenderValue > 0 ? getRepaymentSchedule(insuranceStartDate, insuranceLoanAmount, insuranceInterestRate, insuranceTerm) : null;
+        const equipmentSchedule = equipmentValue > 0 ? getRepaymentSchedule(equipmentStartDate, equipmentLoanAmount, equipmentInterestRate, equipmentTerm) : null;
+        const jewelrySchedule = jewelryValue > 0 ? getRepaymentSchedule(jewelryStartDate, jewelryLoanAmount, jewelryInterestRate, jewelryTerm) : null;
+
+        // Update results HTML
+        const resultsHTML = `
+          <div class="result-card animate__animated animate__fadeInUp">
+            <h3>Loan Summary</h3>
+            <div class="total-section">
+              <p>Total Eligible Loan: ${formatINR(totalLoanAmount)}</p>
+              <p>Total Collateral Value: ${formatINR(totalCollateral)}</p>
+            </div>
+            
+            ${goldWeight > 0 ? `
+              <div class="collateral-details">
+                <h4>Gold Loan Details</h4>
+                <p>Loan Amount: ${formatINR(goldLoanAmount)}</p>
+                <p>Interest Rate: ${goldInterestRate.toFixed(2)}% APR</p>
+                <p>Loan Term: ${goldTerm} months</p>
+                <p>Monthly EMI: ${formatINR(goldSchedule.schedule[0].emi)}</p>
+                <p>Start Date: ${formatDate(goldStartDate)}</p>
+                <p>End Date: ${formatDate(goldSchedule.schedule[goldSchedule.schedule.length-1].dueDate)}</p>
+                <p>Total Interest Payable: ${formatINR(goldSchedule.totalInterest)}</p>
+                <p>Total Amount Payable: ${formatINR(goldSchedule.totalPayments)}</p>
+                
+                <div class="repayment-schedule">
+                  <h5>Repayment Schedule</h5>
+                  <div class="schedule-table">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>No.</th>
+                          <th>Due Date</th>
+                          <th>EMI</th>
+                          <th>Principal</th>
+                          <th>Interest</th>
+                          <th>Balance</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        ${goldSchedule.schedule.map(payment => `
+                          <tr>
+                            <td>${payment.installmentNo}</td>
+                            <td>${formatDate(payment.dueDate)}</td>
+                            <td>${formatINR(payment.emi)}</td>
+                            <td>${formatINR(payment.principal)}</td>
+                            <td>${formatINR(payment.interest)}</td>
+                            <td>${formatINR(payment.balance)}</td>
+                          </tr>
+                        `).join('')}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            ` : ''}
+            
+            ${carValue > 0 ? `
+              <div class="collateral-details">
+                <h4>Car Loan Details</h4>
+                <p>Loan Amount: ${formatINR(carLoanAmount)}</p>
+                <p>Interest Rate: ${carInterestRate.toFixed(2)}% APR</p>
+                <p>Loan Term: ${carTerm} months</p>
+                <p>Monthly EMI: ${formatINR(carSchedule.schedule[0].emi)}</p>
+                <p>Start Date: ${formatDate(carStartDate)}</p>
+                <p>End Date: ${formatDate(carSchedule.schedule[carSchedule.schedule.length-1].dueDate)}</p>
+                <p>Total Interest Payable: ${formatINR(carSchedule.totalInterest)}</p>
+                <p>Total Amount Payable: ${formatINR(carSchedule.totalPayments)}</p>
+                
+                <div class="repayment-schedule">
+                  <h5>Repayment Schedule</h5>
+                  <div class="schedule-table">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>No.</th>
+                          <th>Due Date</th>
+                          <th>EMI</th>
+                          <th>Principal</th>
+                          <th>Interest</th>
+                          <th>Balance</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        ${carSchedule.schedule.map(payment => `
+                          <tr>
+                            <td>${payment.installmentNo}</td>
+                            <td>${formatDate(payment.dueDate)}</td>
+                            <td>${formatINR(payment.emi)}</td>
+                            <td>${formatINR(payment.principal)}</td>
+                            <td>${formatINR(payment.interest)}</td>
+                            <td>${formatINR(payment.balance)}</td>
+                          </tr>
+                        `).join('')}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            ` : ''}
+            
+            ${propertyValue > 0 ? `
+              <div class="collateral-details">
+                <h4>Property Loan Details</h4>
+                <p>Loan Amount: ${formatINR(propertyLoanAmount)}</p>
+                <p>Interest Rate: ${propertyInterestRate.toFixed(2)}% APR</p>
+                <p>Loan Term: ${propertyTerm} months</p>
+                <p>Monthly EMI: ${formatINR(propertySchedule.schedule[0].emi)}</p>
+                <p>Start Date: ${formatDate(propertyStartDate)}</p>
+                <p>End Date: ${formatDate(propertySchedule.schedule[propertySchedule.schedule.length-1].dueDate)}</p>
+                <p>Total Interest Payable: ${formatINR(propertySchedule.totalInterest)}</p>
+                <p>Total Amount Payable: ${formatINR(propertySchedule.totalPayments)}</p>
+                
+                <div class="repayment-schedule">
+                  <h5>Repayment Schedule</h5>
+                  <div class="schedule-table">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>No.</th>
+                          <th>Due Date</th>
+                          <th>EMI</th>
+                          <th>Principal</th>
+                          <th>Interest</th>
+                          <th>Balance</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        ${propertySchedule.schedule.map(payment => `
+                          <tr>
+                            <td>${payment.installmentNo}</td>
+                            <td>${formatDate(payment.dueDate)}</td>
+                            <td>${formatINR(payment.emi)}</td>
+                            <td>${formatINR(payment.principal)}</td>
+                            <td>${formatINR(payment.interest)}</td>
+                            <td>${formatINR(payment.balance)}</td>
+                          </tr>
+                        `).join('')}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            ` : ''}
+            
+            ${silverWeight > 0 ? `
+              <div class="collateral-details">
+                <h4>Silver Loan Details</h4>
+                <p>Loan Amount: ${formatINR(silverLoanAmount)}</p>
+                <p>Interest Rate: ${silverInterestRate.toFixed(2)}% APR</p>
+                <p>Loan Term: ${silverTerm} months</p>
+                <p>Monthly EMI: ${formatINR(silverSchedule.schedule[0].emi)}</p>
+                <p>Start Date: ${formatDate(silverStartDate)}</p>
+                <p>End Date: ${formatDate(silverSchedule.schedule[silverSchedule.schedule.length-1].dueDate)}</p>
+                <p>Total Interest Payable: ${formatINR(silverSchedule.totalInterest)}</p>
+                <p>Total Amount Payable: ${formatINR(silverSchedule.totalPayments)}</p>
+                
+                <div class="repayment-schedule">
+                  <h5>Repayment Schedule</h5>
+                  <div class="schedule-table">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>No.</th>
+                          <th>Due Date</th>
+                          <th>EMI</th>
+                          <th>Principal</th>
+                          <th>Interest</th>
+                          <th>Balance</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        ${silverSchedule.schedule.map(payment => `
+                          <tr>
+                            <td>${payment.installmentNo}</td>
+                            <td>${formatDate(payment.dueDate)}</td>
+                            <td>${formatINR(payment.emi)}</td>
+                            <td>${formatINR(payment.principal)}</td>
+                            <td>${formatINR(payment.interest)}</td>
+                            <td>${formatINR(payment.balance)}</td>
+                          </tr>
+                        `).join('')}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            ` : ''}
+            
+            ${cryptoAmount > 0 ? `
+              <div class="collateral-details">
+                <h4>Cryptocurrency Loan Details</h4>
+                <p>Crypto Type: ${cryptoType}</p>
+                <p>Crypto Amount: ${cryptoAmount} ${cryptoType}</p>
+                <p>Current Value: ${formatINR(cryptoValue)}</p>
+                <p>Loan Amount: ${formatINR(cryptoLoanAmount)}</p>
+                <p>Interest Rate: ${cryptoInterestRate.toFixed(2)}% APR</p>
+                <p>Loan Term: ${cryptoTerm} months</p>
+                <p>Monthly EMI: ${formatINR(cryptoSchedule.schedule[0].emi)}</p>
+                <p>Start Date: ${formatDate(cryptoStartDate)}</p>
+                <p>End Date: ${formatDate(cryptoSchedule.schedule[cryptoSchedule.schedule.length-1].dueDate)}</p>
+                <p>Total Interest Payable: ${formatINR(cryptoSchedule.totalInterest)}</p>
+                <p>Total Amount Payable: ${formatINR(cryptoSchedule.totalPayments)}</p>
+                
+                <div class="repayment-schedule">
+                  <h5>Repayment Schedule</h5>
+                  <div class="schedule-table">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>No.</th>
+                          <th>Due Date</th>
+                          <th>EMI</th>
+                          <th>Principal</th>
+                          <th>Interest</th>
+                          <th>Balance</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        ${cryptoSchedule.schedule.map(payment => `
+                          <tr>
+                            <td>${payment.installmentNo}</td>
+                            <td>${formatDate(payment.dueDate)}</td>
+                            <td>${formatINR(payment.emi)}</td>
+                            <td>${formatINR(payment.principal)}</td>
+                            <td>${formatINR(payment.interest)}</td>
+                            <td>${formatINR(payment.balance)}</td>
+                          </tr>
+                        `).join('')}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            ` : ''}
+            
+            ${portfolioValue > 0 ? `
+              <div class="collateral-details">
+                <h4>Stocks/Mutual Funds Loan Details</h4>
+                <p>Investment Type: ${investmentType}</p>
+                <p>Portfolio Value: ${formatINR(portfolioValue)}</p>
+                <p>Loan Amount: ${formatINR(stocksLoanAmount)}</p>
+                <p>Interest Rate: ${stocksInterestRate.toFixed(2)}% APR</p>
+                <p>Loan Term: ${stocksTerm} months</p>
+                <p>Monthly EMI: ${formatINR(stocksSchedule.schedule[0].emi)}</p>
+                <p>Start Date: ${formatDate(stocksStartDate)}</p>
+                <p>End Date: ${formatDate(stocksSchedule.schedule[stocksSchedule.schedule.length-1].dueDate)}</p>
+                <p>Total Interest Payable: ${formatINR(stocksSchedule.totalInterest)}</p>
+                <p>Total Amount Payable: ${formatINR(stocksSchedule.totalPayments)}</p>
+                
+                <div class="repayment-schedule">
+                  <h5>Repayment Schedule</h5>
+                  <div class="schedule-table">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>No.</th>
+                          <th>Due Date</th>
+                          <th>EMI</th>
+                          <th>Principal</th>
+                          <th>Interest</th>
+                          <th>Balance</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        ${stocksSchedule.schedule.map(payment => `
+                          <tr>
+                            <td>${payment.installmentNo}</td>
+                            <td>${formatDate(payment.dueDate)}</td>
+                            <td>${formatINR(payment.emi)}</td>
+                            <td>${formatINR(payment.principal)}</td>
+                            <td>${formatINR(payment.interest)}</td>
+                            <td>${formatINR(payment.balance)}</td>
+                          </tr>
+                        `).join('')}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            ` : ''}
+            
+            ${surrenderValue > 0 ? `
+              <div class="collateral-details">
+                <h4>Insurance Loan Details</h4>
+                <p>Policy Type: ${policyType}</p>
+                <p>Surrender Value: ${formatINR(surrenderValue)}</p>
+                <p>Loan Amount: ${formatINR(insuranceLoanAmount)}</p>
+                <p>Interest Rate: ${insuranceInterestRate.toFixed(2)}% APR</p>
+                <p>Loan Term: ${insuranceTerm} months</p>
+                <p>Monthly EMI: ${formatINR(insuranceSchedule.schedule[0].emi)}</p>
+                <p>Start Date: ${formatDate(insuranceStartDate)}</p>
+                <p>End Date: ${formatDate(insuranceSchedule.schedule[insuranceSchedule.schedule.length-1].dueDate)}</p>
+                <p>Total Interest Payable: ${formatINR(insuranceSchedule.totalInterest)}</p>
+                <p>Total Amount Payable: ${formatINR(insuranceSchedule.totalPayments)}</p>
+                
+                <div class="repayment-schedule">
+                  <h5>Repayment Schedule</h5>
+                  <div class="schedule-table">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>No.</th>
+                          <th>Due Date</th>
+                          <th>EMI</th>
+                          <th>Principal</th>
+                          <th>Interest</th>
+                          <th>Balance</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        ${insuranceSchedule.schedule.map(payment => `
+                          <tr>
+                            <td>${payment.installmentNo}</td>
+                            <td>${formatDate(payment.dueDate)}</td>
+                            <td>${formatINR(payment.emi)}</td>
+                            <td>${formatINR(payment.principal)}</td>
+                            <td>${formatINR(payment.interest)}</td>
+                            <td>${formatINR(payment.balance)}</td>
+                          </tr>
+                        `).join('')}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            ` : ''}
+            
+            ${equipmentValue > 0 ? `
+              <div class="collateral-details">
+                <h4>Equipment Loan Details</h4>
+                <p>Equipment Type: ${equipmentType}</p>
+                <p>Equipment Value: ${formatINR(equipmentValue)}</p>
+                <p>Equipment Age: ${equipmentAge} years</p>
+                <p>Loan Amount: ${formatINR(equipmentLoanAmount)}</p>
+                <p>Interest Rate: ${equipmentInterestRate.toFixed(2)}% APR</p>
+                <p>Loan Term: ${equipmentTerm} months</p>
+                <p>Monthly EMI: ${formatINR(equipmentSchedule.schedule[0].emi)}</p>
+                <p>Start Date: ${formatDate(equipmentStartDate)}</p>
+                <p>End Date: ${formatDate(equipmentSchedule.schedule[equipmentSchedule.schedule.length-1].dueDate)}</p>
+                <p>Total Interest Payable: ${formatINR(equipmentSchedule.totalInterest)}</p>
+                <p>Total Amount Payable: ${formatINR(equipmentSchedule.totalPayments)}</p>
+                
+                <div class="repayment-schedule">
+                  <h5>Repayment Schedule</h5>
+                  <div class="schedule-table">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>No.</th>
+                          <th>Due Date</th>
+                          <th>EMI</th>
+                          <th>Principal</th>
+                          <th>Interest</th>
+                          <th>Balance</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        ${equipmentSchedule.schedule.map(payment => `
+                          <tr>
+                            <td>${payment.installmentNo}</td>
+                            <td>${formatDate(payment.dueDate)}</td>
+                            <td>${formatINR(payment.emi)}</td>
+                            <td>${formatINR(payment.principal)}</td>
+                            <td>${formatINR(payment.interest)}</td>
+                            <td>${formatINR(payment.balance)}</td>
+                          </tr>
+                        `).join('')}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            ` : ''}
+            
+            ${jewelryValue > 0 ? `
+              <div class="collateral-details">
+                <h4>Jewelry Loan Details</h4>
+                <p>Jewelry Type: ${jewelryType}</p>
+                <p>Weight: ${jewelryWeight} carats</p>
+                <p>Appraised Value: ${formatINR(jewelryValue)}</p>
+                <p>Age: ${jewelryAge} years</p>
+                <p>Loan Amount: ${formatINR(jewelryLoanAmount)}</p>
+                <p>Interest Rate: ${jewelryInterestRate.toFixed(2)}% APR</p>
+                <p>Loan Term: ${jewelryTerm} months</p>
+                <p>Monthly EMI: ${formatINR(jewelrySchedule.schedule[0].emi)}</p>
+                <p>Start Date: ${formatDate(jewelryStartDate)}</p>
+                <p>End Date: ${formatDate(jewelrySchedule.schedule[jewelrySchedule.schedule.length-1].dueDate)}</p>
+                <p>Total Interest Payable: ${formatINR(jewelrySchedule.totalInterest)}</p>
+                <p>Total Amount Payable: ${formatINR(jewelrySchedule.totalPayments)}</p>
+                
+                <div class="repayment-schedule">
+                  <h5>Repayment Schedule</h5>
+                  <div class="schedule-table">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>No.</th>
+                          <th>Due Date</th>
+                          <th>EMI</th>
+                          <th>Principal</th>
+                          <th>Interest</th>
+                          <th>Balance</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        ${jewelrySchedule.schedule.map(payment => `
+                          <tr>
+                            <td>${payment.installmentNo}</td>
+                            <td>${formatDate(payment.dueDate)}</td>
+                            <td>${formatINR(payment.emi)}</td>
+                            <td>${formatINR(payment.principal)}</td>
+                            <td>${formatINR(payment.interest)}</td>
+                            <td>${formatINR(payment.balance)}</td>
+                          </tr>
+                        `).join('')}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            ` : ''}
+          </div>
+        `;
+
+        document.getElementById('results').innerHTML = resultsHTML;
+        updateChart(goldLoanAmount, carLoanAmount, propertyLoanAmount, silverLoanAmount, cryptoLoanAmount,
+                   stocksLoanAmount, insuranceLoanAmount, equipmentLoanAmount, jewelryLoanAmount);
+      }
+
+      function calculateGoldInterest(weight, term) {
+        // Base rate based on weight
+        let baseRate = weight < 50 ? 15 : weight < 100 ? 12 : 8;
+        
+        // Adjust rate based on term
+        if (term <= 3) return baseRate + 2; // Higher rate for short term
+        if (term <= 12) return baseRate;
+        if (term <= 24) return baseRate - 1;
+        return baseRate - 2; // Lower rate for longer term
+      }
+
+      function calculateCarLTV(age) {
+        if (age <= 3) return 0.70;
+        if (age <= 5) return 0.60;
+        return 0.50;
+      }
+
+      function calculateCarInterest(age, term) {
+        // Base rate based on car age
+        let baseRate = age <= 3 ? 8 : age <= 5 ? 12 : 15;
+        
+        // Adjust rate based on term
+        if (term <= 3) return baseRate + 2;
+        if (term <= 12) return baseRate;
+        if (term <= 24) return baseRate - 1;
+        return baseRate - 2;
+      }
+
+      function calculatePropertyInterest(location, term) {
+        // Base rate based on location
+        let baseRate;
+        switch(location) {
+          case 'urban': baseRate = 7; break;
+          case 'suburban': baseRate = 9; break;
+          case 'rural': baseRate = 12; break;
+          default: baseRate = 10;
+        }
+        
+        // Adjust rate based on term
+        if (term <= 3) return baseRate + 2;
+        if (term <= 12) return baseRate;
+        if (term <= 24) return baseRate - 1;
+        return baseRate - 2;
+      }
+
+      function calculateSilverInterest(weight, term) {
+        // Base rate based on weight
+        let baseRate = weight < 500 ? 16 : weight < 1000 ? 13 : 9;
+        
+        // Adjust rate based on term
+        if (term <= 3) return baseRate + 2; // Higher rate for short term
+        if (term <= 12) return baseRate;
+        if (term <= 24) return baseRate - 1;
+        return baseRate - 2; // Lower rate for longer term
+      }
+
+      function calculateCryptoInterest(type, amount, term) {
+        // Base rate based on crypto type
+        let baseRate;
+        switch(type) {
+          case 'BTC': baseRate = 10; break;
+          case 'ETH': baseRate = 12; break;
+          case 'BNB': baseRate = 14; break;
+          default: baseRate = 15;
+        }
+        
+        // Adjust rate based on amount
+        if (type === 'BTC' && amount >= 1) baseRate -= 2;
+        if (type === 'ETH' && amount >= 10) baseRate -= 2;
+        if (type === 'BNB' && amount >= 100) baseRate -= 2;
+        
+        // Adjust rate based on term
+        if (term <= 3) return baseRate + 2;
+        if (term <= 6) return baseRate + 1;
+        return baseRate;
+      }
+
+      function getCryptoPrice(type) {
+        // Sample prices (you would typically fetch these from an API)
+        const prices = {
+          'BTC': 3500000, // INR
+          'ETH': 180000,  // INR
+          'BNB': 25000    // INR
+        };
+        return prices[type] || 0;
+      }
+
+      function calculateStocksInterest(type, value, term) {
+        // Base rate based on investment type
+        let baseRate;
+        switch(type) {
+          case 'equity': baseRate = 12; break;
+          case 'mutualFund': baseRate = 11; break;
+          case 'etf': baseRate = 10; break;
+          default: baseRate = 13;
+        }
+        
+        // Adjust rate based on portfolio value
+        if (value >= 1000000) baseRate -= 2;
+        if (value >= 5000000) baseRate -= 1;
+        
+        // Adjust rate based on term
+        if (term <= 3) return baseRate + 1.5;
+        if (term <= 6) return baseRate + 0.5;
+        return baseRate;
+      }
+
+      function calculateInsuranceInterest(type, value, age, term) {
+        // Base rate based on policy type
+        let baseRate;
+        switch(type) {
+          case 'life': baseRate = 9; break;
+          case 'endowment': baseRate = 8; break;
+          case 'ulip': baseRate = 10; break;
+          default: baseRate = 11;
+        }
+        
+        // Adjust rate based on policy age
+        if (age >= 5) baseRate -= 1;
+        if (age >= 10) baseRate -= 1;
+        
+        // Adjust rate based on term
+        if (term <= 12) return baseRate;
+        if (term <= 24) return baseRate + 0.5;
+        return baseRate + 1;
+      }
+
+      function calculateEquipmentInterest(type, value, age, term) {
+        // Base rate based on equipment type
+        let baseRate;
+        switch(type) {
+          case 'machinery': baseRate = 11; break;
+          case 'tools': baseRate = 12; break;
+          case 'tech': baseRate = 13; break;
+          default: baseRate = 14;
+        }
+        
+        // Adjust rate based on equipment age
+        if (age <= 2) baseRate -= 1;
+        if (age >= 5) baseRate += 2;
+        
+        // Adjust rate based on term
+        if (term <= 12) return baseRate;
+        if (term <= 24) return baseRate + 1;
+        return baseRate + 2;
+      }
+
+      function calculateJewelryInterest(type, weight, value, age, term) {
+        // Base rate based on jewelry type
+        let baseRate;
+        switch(type) {
+          case 'diamond': baseRate = 10; break;
+          case 'ruby': baseRate = 11; break;
+          case 'emerald': baseRate = 11.5; break;
+          case 'sapphire': baseRate = 12; break;
+          case 'pearl': baseRate = 13; break;
+          default: baseRate = 12;
+        }
+        
+        // Adjust rate based on value
+        if (value >= 1000000) baseRate -= 1;
+        if (value >= 5000000) baseRate -= 1;
+        
+        // Adjust for weight
+        if (weight >= 5) baseRate -= 0.5;
+        if (weight >= 10) baseRate -= 0.5;
+        
+        // Adjust for age (antique value consideration)
+        if (age >= 25) baseRate -= 1; // Antique value
+        if (age <= 2) baseRate -= 0.5; // Nearly new
+        
+        // Adjust for term
+        if (term <= 3) return baseRate + 1;
+        if (term <= 6) return baseRate + 0.5;
+        if (term >= 24) return baseRate - 0.5;
+        
+        return baseRate;
+      }
+
+      function updateChart(goldLoan, carLoan, propertyLoan, silverLoan, cryptoLoan,
+                         stocksLoan, insuranceLoan, equipmentLoan, jewelryLoan) {
+        const ctx = document.getElementById('loanChart').getContext('2d');
+        
+        if (loanChart) {
+          loanChart.destroy();
+        }
+
+        loanChart = new Chart(ctx, {
+          type: 'doughnut',
+          data: {
+            labels: ['Gold Loan', 'Car Loan', 'Property Loan', 'Silver Loan', 'Crypto Loan', 
+                    'Stocks Loan', 'Insurance Loan', 'Equipment Loan', 'Jewelry Loan'],
+            datasets: [{
+              data: [goldLoan, carLoan, propertyLoan, silverLoan, cryptoLoan,
+                     stocksLoan, insuranceLoan, equipmentLoan, jewelryLoan],
+              backgroundColor: ['#FFD700', '#FF6B6B', '#4ECDC4', '#C0C0C0', '#F7931A',
+                              '#2E7D32', '#1976D2', '#6D4C41', '#9C27B0'],
+              borderWidth: 2
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: 'bottom',
+                labels: {
+                  color: '#ffffff'
+                }
+              }
+            }
+          }
+        });
+      }
+
+      function toggleCollateral(button) {
+        const collateralType = button.dataset.collateral;
+        const section = document.getElementById(collateralType + 'Section');
+        
+        // Toggle active state of button
+        button.classList.toggle('active');
+        
+        // Toggle section visibility with animation
+        if (button.classList.contains('active')) {
+          section.style.display = 'block';
+          section.classList.add('animate__animated', 'animate__fadeIn');
+        } else {
+          section.classList.add('animate__animated', 'animate__fadeOut');
+          setTimeout(() => {
+            section.style.display = 'none';
+            section.classList.remove('animate__animated', 'animate__fadeOut');
+          }, 500);
+        }
+
+        // Recalculate loan if any values are entered
+        calculateLoan();
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        // Set default dates
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('goldStartDate').value = today;
+        document.getElementById('carStartDate').value = today;
+        document.getElementById('propertyStartDate').value = today;
+        document.getElementById('silverStartDate').value = today;
+        document.getElementById('cryptoStartDate').value = today;
+        document.getElementById('stocksStartDate').value = today;
+        document.getElementById('insuranceStartDate').value = today;
+        document.getElementById('equipmentStartDate').value = today;
+        document.getElementById('jewelryStartDate').value = today;
+      });
+
+      // Update progress bar
+      function updateProgress() {
+        const fields = document.querySelectorAll('.neo-input');
+        let filled = 0;
+        let total = 0;
+        
+        fields.forEach(field => {
+          const section = field.closest('.collateral-section');
+          if (section && section.style.display !== 'none') {
+            total++;
+            if (field.value) filled++;
+          }
+        });
+        
+        const progress = total > 0 ? (filled / total) * 100 : 0;
+        document.getElementById('calculationProgress').style.width = `${progress}%`;
+        
+        // Update floating stats visibility
+        const stats = document.getElementById('floatingStats');
+        if (progress > 0) {
+          stats.classList.add('visible');
+        } else {
+          stats.classList.remove('visible');
+        }
+      }
+
+      // Add these helper functions
+      function formatDate(date) {
+        return new Date(date).toLocaleDateString('en-IN', {
+          day: 'numeric',
+          month: 'short',
+          year: 'numeric'
+        });
+      }
+
+      function getRepaymentSchedule(startDate, amount, rate, termMonths) {
+        const monthlyRate = (rate / 12) / 100;
+        const emi = amount * monthlyRate * Math.pow(1 + monthlyRate, termMonths) / 
+                  (Math.pow(1 + monthlyRate, termMonths) - 1);
+        
+        let schedule = [];
+        let balance = amount;
+        let date = new Date(startDate);
+        
+        for (let i = 1; i <= Math.min(termMonths, 36); i++) { // Show max 36 months
+          const interest = balance * monthlyRate;
+          const principal = emi - interest;
+          balance = balance - principal;
+          
+          date.setMonth(date.getMonth() + 1);
+          
+          schedule.push({
+            installmentNo: i,
+            dueDate: new Date(date),
+            emi: emi,
+            principal: principal,
+            interest: interest,
+            balance: Math.max(balance, 0)
+          });
+        }
+        
+        return {
+          schedule,
+          totalPayments: emi * termMonths,
+          totalInterest: (emi * termMonths) - amount
+        };
+      }
+    </script>
+
+  </body>
+</html>

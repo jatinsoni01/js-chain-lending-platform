@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Chain Lending - Live Market</title>
+    <link rel="icon" href="frontend/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="market.css">
+</head>
+<body>
+    <header>
+        <button id="home-button" onclick="window.location.href='new-index.html'">🏠 Home</button>
+        <h1>JS Cross Lending</h1>
+        <button id="theme-toggle">🌙</button>
+    </header>
+
+    <main>
+        <div class="live-market">
+            <h3>Live Market</h3>
+            <div class="loading-spinner" id="loading-spinner"></div>
+            <div class="market-grid" id="market-grid">
+                <!-- Dynamic content will be injected here -->
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 JS Chain Lending. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const API_URL = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=30&page=1';
+
+        async function fetchMarketData() {
+            try {
+                document.getElementById('loading-spinner').style.display = 'block';
+                const response = await fetch(API_URL);
+                const data = await response.json();
+                const marketGrid = document.getElementById('market-grid');
+                marketGrid.innerHTML = '';
+
+                const fragment = document.createDocumentFragment();
+
+                data.forEach(coin => {
+                    const marketItem = document.createElement('div');
+                    marketItem.classList.add('market-item');
+
+                    marketItem.innerHTML = `
+                        <img src="${coin.image}" data-src="${coin.image}" alt="${coin.name}" class="market-image" loading="lazy">
+                        <div class="symbol">${coin.symbol.toUpperCase()}</div>
+                        <div class="price">$${coin.current_price.toFixed(2)}</div>
+                        <div class="change ${coin.price_change_percentage_24h >= 0 ? '' : 'negative'}">
+                            ${coin.price_change_percentage_24h.toFixed(2)}%
+                        </div>
+                        <div class="volume">24h Volume: $${(coin.total_volume).toLocaleString()}</div>
+                        <div class="market-cap">Market Cap: $${(coin.market_cap).toLocaleString()}</div>
+                        <div class="liquidity">Liquidity: N/A</div>
+                        <div class="apy">APY: N/A</div>
+                        <div class="buttons">
+                            <a href="market-details.html?coinId=${coin.id}" class="details-button">Details</a>
+                            <a href="market-graph.html?coinId=${coin.id}" class="graph-button">Graph</a>
+                        </div>
+                    `;
+
+                    const imgElement = marketItem.querySelector('img');
+                    imgElement.onload = () => imgElement.classList.add('loaded');
+                    fragment.appendChild(marketItem);
+                });
+
+                marketGrid.appendChild(fragment);
+                document.getElementById('loading-spinner').style.display = 'none';
+            } catch (error) {
+                console.error('Error fetching market data:', error);
+                document.getElementById('loading-spinner').style.display = 'none';
+            }
+        }
+
+        window.addEventListener('load', fetchMarketData);
+
+        const themeToggleButton = document.getElementById('theme-toggle');
+        let isToggling = false;
+        themeToggleButton.addEventListener('click', () => {
+            if (isToggling) return;
+            isToggling = true;
+            setTimeout(() => isToggling = false, 500);
+
+            document.body.classList.toggle('dark-mode');
+            themeToggleButton.textContent = document.body.classList.contains('dark-mode') ? '🌕' : '🌙';
+        });
+    </script>
+</body>
+</html>

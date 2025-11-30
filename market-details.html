@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coin Details - JS Chain Lending</title>
+    <link rel="icon" href="frontend/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="market-details.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <button id="dashboard-button" onclick="window.location.href='market.html'">📊 Dashboard</button>
+            <h1>Coin Details</h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="details-container">
+            <div id="coin-info">
+                <!-- Dynamic content will be injected here -->
+            </div>
+            <div id="historical-data">
+                <h3>Historical Price Data</h3>
+                <canvas id="priceChart"></canvas>
+            </div>
+            <div id="recent-news">
+                <h3>Recent News</h3>
+                <ul id="news-list">
+                    <!-- News items will be injected here -->
+                </ul>
+            </div>
+            <div id="technical-analysis">
+                <h3>Technical Analysis</h3>
+                <p>Latest technical indicators for ${data.name}:</p>
+                <ul>
+                    <li><strong>RSI (14):</strong> 45.67 (Neutral)</li>
+                    <li><strong>MACD:</strong> 0.12 (Bullish)</li>
+                    <li><strong>MA (50):</strong> $${data.market_data.current_price.usd.toLocaleString()}</li>
+                    <li><strong>MA (200):</strong> $${(data.market_data.current_price.usd * 0.95).toLocaleString()} (Bearish)</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 JS Chain Lending. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const coinId = urlParams.get('coinId');
+        const API_URL = `https://api.coingecko.com/api/v3/coins/${coinId}`;
+
+        async function fetchCoinDetails() {
+            try {
+                const response = await fetch(API_URL);
+                const data = await response.json();
+                const coinInfo = document.getElementById('coin-info');
+
+                coinInfo.innerHTML = `
+                    <div class="coin-header">
+                        <img src="${data.image.large}" alt="${data.name}" class="coin-image">
+                        <div>
+                            <h2>${data.name} (${data.symbol.toUpperCase()})</h2>
+                            <p>Current Price: <span class="highlight">$${data.market_data.current_price.usd.toLocaleString()}</span></p>
+                        </div>
+                    </div>
+                    <div class="coin-stats">
+                        <h3>Market Data</h3>
+                        <ul>
+                            <li><strong>Market Cap:</strong> $${data.market_data.market_cap.usd.toLocaleString()}</li>
+                            <li><strong>24h High:</strong> $${data.market_data.high_24h.usd.toLocaleString()}</li>
+                            <li><strong>24h Low:</strong> $${data.market_data.low_24h.usd.toLocaleString()}</li>
+                            <li><strong>Price Change (24h):</strong> ${data.market_data.price_change_percentage_24h.toFixed(2)}%</li>
+                        </ul>
+                    </div>
+                    <div class="community-stats">
+                        <h3>Community Metrics</h3>
+                        <ul>
+                            <li><strong>Reddit Subscribers:</strong> ${data.community_data.reddit_subscribers || 'N/A'}</li>
+                            <li><strong>Twitter Followers:</strong> ${data.community_data.twitter_followers || 'N/A'}</li>
+                        </ul>
+                    </div>
+                    <div class="description">
+                        <h3>About ${data.name }</h3>
+                        <p>${data.description.en ? data.description.en.split('. ').slice(0, 5).join('. ') + '.' : 'No description available.'}</p>
+                    </div>
+                `;
+
+                fetchHistoricalData(coinId);
+                fetchRecentNews(coinId);
+            } catch (error) {
+                console.error('Error fetching coin details:', error);
+                document.getElementById('coin-info').textContent = 'Unable to fetch coin details. Please try again later.';
+            }
+        }
+
+        async function fetchHistoricalData(coinId) {
+            const historicalURL = `https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=30`;
+            try {
+                const response = await fetch(historicalURL);
+                const data = await response.json();
+                const prices = data.prices.map(price => price[1]);
+                const labels = data.prices.map(price => new Date(price[0]).toLocaleDateString());
+
+                const ctx = document.getElementById('priceChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Price in USD',
+                            data: prices,
+                            borderColor: '#4caf50',
+                            fill: false,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: false
+                            }
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error('Error fetching historical data:', error);
+            }
+        }
+
+        async function fetchRecentNews(coinId) {
+            const newsURL = `https://api.coingecko.com/api/v3/coins/${coinId}/news`;
+            try {
+                const response = await fetch(newsURL);
+                const newsData = await response.json();
+                const newsList = document.getElementById('news-list');
+
+                newsData.forEach(news => {
+                    const listItem = document.createElement('li');
+                    listItem.innerHTML = `<a href="${news.url}" target="_blank">${news.title}</a> - ${new Date(news.published_at).toLocaleDateString()}`;
+                    newsList.appendChild(listItem);
+                });
+            } catch (error) {
+                console.error('Error fetching recent news:', error);
+            }
+        }
+
+        window.addEventListener('load', fetchCoinDetails);
+    </script>
+</body>
+</html>

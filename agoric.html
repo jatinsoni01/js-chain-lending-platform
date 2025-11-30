@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Cross Lending - Agoric Market Overview</title>
+    <link rel="icon" href="frontend/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="agoric.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1>Agoric Market Overview</h1>
+            <a href="new-index.html" class="nav-link">Dashboard</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Market Details Section -->
+        <section class="market-details">
+            <div class="coin-header">
+                <img src="assets/images/Agoric Icon.png" alt="Agoric Logo" class="coin-image">
+                <div class="coin-info">
+                    <h2>Agoric (XRG)</h2>
+                    <p>Current Price: <span id="price">$0.00</span></p>
+                    <p id="price-change" class="positive">Price Change (24h): +0.00%</p>
+                    <p>Market Cap: $<span id="market-cap">0</span></p>
+                    <p>24h Volume: $<span id="volume">0</span></p>
+                    <p>Circulating Supply: <span id="supply">0</span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Agoric Price Chart Section -->
+        <section id="price-chart-section" class="chart-section">
+            <h3>Agoric Price Chart (Last 7 Days)</h3>
+            <canvas id="priceChart" class="chart"></canvas>
+        </section>
+
+        <!-- About Agoric Section -->
+        <section id="about-agoric" class="about-section">
+            <h3>About Agoric</h3>
+            <p>Agoric is a decentralized platform that simplifies the development of smart contracts and decentralized applications (dApps). It allows developers to write smart contracts in JavaScript, a language they are already familiar with, reducing the barriers to entry and making blockchain development accessible to more developers.</p>
+            <p>Agoric enables secure, scalable, and interoperable decentralized applications with cross-chain capabilities. One key use case for Agoric is cross-chain lending, where assets from multiple blockchains can be used as collateral to borrow stable assets.</p>
+            <a href="https://agoric.com" target="_blank">Learn more about Agoric</a>
+        </section>
+
+        <!-- Agoric Core Features Section -->
+        <section id="core-features" class="about-section">
+            <h3>Agoric's Core Features</h3>
+            <ul>
+                <li><strong>JavaScript Smart Contracts:</strong> Agoric allows smart contracts to be written in JavaScript, making blockchain development accessible to a broader range of developers.</li>
+                <li><strong>Secure Computation:</strong> The platform uses an object-capability security model to ensure safe interactions between dApps and to protect against malicious actions.</li>
+                <li><strong>Modular Design:</strong> Agoric's modular architecture allows developers to build decentralized applications quickly by composing different contract components.</li>
+                <li><strong>Cross-Chain Interoperability:</strong> Agoric enables assets from different blockchains to interact with one another, facilitating use cases like cross-chain lending.</li>
+            </ul>
+        </section>
+
+        <!-- Agoric and DeFi Section -->
+        <section id="defi" class="about-section">
+            <h3>Agoric and Decentralized Finance (DeFi)</h3>
+            <p>Agoric’s ecosystem is ideal for building decentralized finance (DeFi) applications, including:</p>
+            <ul>
+                <li><strong>Cross-Chain Lending:</strong> Collateralize assets from different blockchains to borrow stable assets.</li>
+                <li><strong>Liquidity Pools:</strong> Users can provide liquidity to decentralized platforms and earn rewards.</li>
+                <li><strong>Decentralized Exchanges (DEX):</strong> Agoric supports the creation of DEXs, where users can trade assets directly from their wallets.</li>
+            </ul>
+        </section>
+
+        <!-- Agoric’s Ecosystem and Governance Section -->
+        <section id="ecosystem" class="about-section">
+            <h3>Agoric’s Ecosystem and Community</h3>
+            <p>Agoric has a growing ecosystem of developers and partners, with a focus on security, modularity, and cross-chain interoperability. It has formed strategic partnerships to improve integration with existing blockchain networks, enhancing its ecosystem's capabilities.</p>
+        </section>
+
+        <!-- Footer Section -->
+        <footer class="footer">
+            <p>&copy; 2024 JS Chain Lending. All rights reserved.</p>
+            <p>Follow us on <a href="#">Twitter</a> | <a href="#">LinkedIn</a></p>
+        </footer>
+    </main>
+
+    <script>
+        const API_URL = 'https://api.coingecko.com/api/v3/coins/agoric';
+
+        async function fetchAgoricData() {
+            try {
+                const response = await fetch(API_URL);
+                const data = await response.json();
+
+                document.getElementById('price').textContent = `$${data.market_data.current_price.usd.toFixed(2)}`;
+                const priceChange = data.market_data.price_change_percentage_24h.toFixed(2);
+                const priceChangeElement = document.getElementById('price-change');
+                priceChangeElement.textContent = `Price Change (24h): ${priceChange}%`;
+                priceChangeElement.className = priceChange >= 0 ? 'positive' : 'negative';
+                document.getElementById('market-cap').textContent = data.market_data.market_cap.usd.toLocaleString();
+                document.getElementById('volume').textContent = data.market_data.total_volume.usd.toLocaleString();
+                document.getElementById('supply').textContent = data.market_data.circulating_supply.toLocaleString();
+
+            } catch (error) {
+                console.error('Error fetching Agoric market data:', error);
+            }
+        }
+
+        window.addEventListener('load', fetchAgoricData);
+    </script>
+</body>
+
+</html>
